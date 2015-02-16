@@ -1,0 +1,11 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  min_messages: warning
+  username: <%= ENV['USER'] %>
+  host: localhost
+
+test:
+  <<: *defaults
+  database: travis_test
