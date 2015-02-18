@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'postgres installation' do
 
-  describe package ('postgresql') do
-    it { should be_installed }
+  describe command ('psql --version') do
+    its(:stout) { should match 'psql' }
   end
 
   describe command('createdb test; psql --list') do
