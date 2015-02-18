@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'postgres installation' do
 
   describe command ('psql --version') do
-    its(:stout) { should match 'psql' }
+    its(:stdout) { should match 'psql' }
   end
 
   describe command('createdb test; psql --list') do
