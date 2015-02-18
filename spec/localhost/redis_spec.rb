@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'redis installation' do
 
-  describe command ('ruby -e \'Redis.new\'') do
-    its(:stdout) { should match 'Redis client' }
+  describe command ('redis-cli ping') do
+    its(:stdout) { should match 'PONG' }
   end
 
   # describe command('createdb test_db; psql --list') do
