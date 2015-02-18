@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Ruby installation' do
-  skip command('rvm list default') do
+  describe command('rvm list default') do
     its(:stdout) { should match '1.9.3' }
   end
 
