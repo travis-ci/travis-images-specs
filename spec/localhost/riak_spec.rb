@@ -19,7 +19,7 @@ describe 'riak installation' do
       its(:stdout) { should match 'pong' }
     end
 
-    describe command ('sudo riak-admin test') do
+    describe command('sudo riak-admin test') do
       its(:stdout) { should match 'completed 1 read/write cycle' }
     end
   end
