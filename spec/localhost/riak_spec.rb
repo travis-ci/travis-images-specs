@@ -9,8 +9,9 @@ describe 'riak installation' do
   describe 'riak commands', sudo: true do
   # riak commands can only be tested using sudo
 
-    before :all do
+    before do
       system('sudo riak start')
+      sleep 5
     end
 
     describe command('sudo riak ping') do
