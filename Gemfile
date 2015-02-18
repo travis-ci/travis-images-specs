@@ -6,6 +6,5 @@ gem 'rake'
 
 group :test do
   gem 'rspec', '~> 3.2.0'
-  # gem 'pg'
   gem 'serverspec'
 end

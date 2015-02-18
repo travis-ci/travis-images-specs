@@ -6,14 +6,15 @@ describe 'riak installation' do
     it { should be_installed }
   end
 
-  # riak can only be tested using sudo
+  describe 'riak commands', sudo: true do
+  # riak commands can only be tested using sudo
 
-  # before :all do
-  #   system('riak start')
-  # end
+    before :all do
+      system('sudo riak start')
+    end
 
-  # describe command('riak ping') do
-  #   its(:stdout) { should match 'pong' }
-  # end
-
+    describe command('sudo riak ping') do
+      its(:stdout) { should match 'pong' }
+    end
+  end
 end
