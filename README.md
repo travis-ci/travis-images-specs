@@ -1,4 +1,4 @@
 # travis-images-specs
-tests for Travis build images
+Tests for Travis build images
 
 
