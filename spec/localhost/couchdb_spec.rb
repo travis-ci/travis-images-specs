@@ -11,10 +11,15 @@ describe 'couchdb installation' do
     before :all do
       system('sudo service couchdb start')
       system('sleep 5')
+      system('curl -X PUT http://127.0.0.1:5984/baseball')
     end
 
     describe command ('curl http://127.0.0.1:5984/') do
-      its(:stdout) { should include 'couchdb Welcome' }
+      its(:stdout) { should match '"couchdb":"Welcome"' }
+    end
+
+    describe command ('curl -X GET http://127.0.0.1:5984/_all_dbs') do
+      its(:stdout) { should match '"baseball"' }
     end
 
   end
