@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'mongodb installation' do
 
-  describe package('mongo') do
+  describe package('mongodb') do
     it { should be_installed }
   end
 
