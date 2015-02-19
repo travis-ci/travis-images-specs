@@ -12,7 +12,7 @@ describe 'couchdb installation' do
       system('sudo service couchdb start')
       system('sleep 5')
       system('curl -X PUT http://127.0.0.1:5984/baseball')
-      system('curl -X PUT http://127.0.0.1:5984/baseball/bat -H 'Content-Type: application/json' -d '{"Name":"Testname"}'')
+      system('curl -X PUT http://127.0.0.1:5984/baseball/bat -H \'Content-Type: application/json\' -d \'{\"Name":\"Testname\"}\'')
     end
 
     describe command ('curl http://127.0.0.1:5984/') do
@@ -24,7 +24,7 @@ describe 'couchdb installation' do
     end
 
     describe command ('curl -X GET http://127.0.0.1:5984/baseball/bat') do
-      its(:stdout) { should match '{"_id":"bat","Name":"Testname"' }
+      its(:stdout) { should include("_id", "bat", "Name", "Testname" )
     end
 
 
