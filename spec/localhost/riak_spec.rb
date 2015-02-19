@@ -12,7 +12,7 @@ describe 'riak installation' do
     before do
       system('sudo riak start')
       # ensure riak config has finished loading
-      sleep 3
+      sleep 5
     end
 
     describe command('sudo riak ping') do
