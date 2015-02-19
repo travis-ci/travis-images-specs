@@ -10,6 +10,7 @@ describe 'mongodb installation' do
 
     before do
       system('sudo service mongodb start')
+      system('sleep 10')
     end
 
     describe command ('cat /var/log/mongodb/mongodb.log')  do
