@@ -6,7 +6,7 @@ describe 'mongodb installation' do
     #it { should be_installed }
   #end
 
-  describe command ('monog --version') do
+  describe command ('mongo --version') do
     its(:stdout) { should match 'mongoDB shell version' }
   end
 
