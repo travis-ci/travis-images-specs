@@ -20,6 +20,10 @@ describe 'mongodb installation' do
     describe command ('mongo --eval "db.testData.insert( { x : 6 } ); db.getCollectionNames()"')  do
       its(:stdout) { should match 'testData' }
     end
+
+    describe command ('mongo --eval "var myCursor = db.testData.find( { x: 6 }); myCursor.forEach(printjson);"')  do
+      its(:stdout) { should match '{ "_id" : ObjectId("\w"), "x" : 6 }' }
+    end
   end
 
 end
