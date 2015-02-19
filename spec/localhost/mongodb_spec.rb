@@ -22,7 +22,7 @@ describe 'mongodb installation' do
     end
 
     describe command ('mongo --eval "var myCursor = db.testData.find( { x: 6 }); myCursor.forEach(printjson);"')  do
-      its(:stdout) { should match '{ "_id" : ObjectId("/\w/"), "x" : 6 }' }
+      its(:stdout) { should match '{ "_id" : ObjectId\("[\w]+"\), "x" : 6 }' }
     end
   end
 
