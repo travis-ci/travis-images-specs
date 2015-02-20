@@ -6,8 +6,8 @@ describe 'memcached installation' do
     it { should be_installed }
   end
 
-  describe command ('echo \"stats\" | nc 127.0.0.1 11211')  do
-    its(:stdout) { should match 'STAT version' }
+  describe command ('echo \'stats\' | nc 127.0.0.1 11211')  do
+    its(:stdout) { should match 'version' }
   end
 
 end
