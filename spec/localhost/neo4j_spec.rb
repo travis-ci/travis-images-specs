@@ -18,7 +18,7 @@ describe 'neo4j installation' do
     end
 
     describe command ('neo4j-shell -c "set -t int height 178"; neo4j-shell -c "ls"') do
-      its(:stdout) { should include("height =", "178"}
+      its(:stdout) { should include("height =", "178") }
     end
   end
 
