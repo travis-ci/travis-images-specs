@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'neo4j installation' do
 
-  describe package('neo4j-server') do
-    it { should be_installed }
+  describe service('neo4j') do
+    it { should be_enabled }
   end
 
   describe 'neo4j commands', sudo: true do
@@ -13,12 +13,12 @@ describe 'neo4j installation' do
       system('sleep 10')
     end
 
-    describe service('neo4j-shell -c') do
+    describe service('neo4j') do
       it { should be_running }
     end
 
     describe command ('neo4j-shell -c "set -t int height 178"; neo4j-shell -c "ls"') do
-      its(:stdout) { should match '*height =[178]'}
+      its(:stdout) { should match 'height =[178]'}
     end
   end
 
