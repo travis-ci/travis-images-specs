@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'neo4j installation' do
 
-  describe package('neo4j') do
+  describe package('neo4j-server') do
     it { should be_installed }
   end
 
