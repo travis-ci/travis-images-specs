@@ -12,4 +12,5 @@ describe 'nodejs installation ' do
 
   describe command('node .spec/files/node_http.js; curl localhost:8080') do
     its (:stdout) { should match 'Hello Http'}
+  end
 end
