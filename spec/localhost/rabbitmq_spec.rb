@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'rabbitmq installation' do
 
-  describe package('rabbitmq') do
+  describe package('rabbitmq-server') do
     it { should be_installed }
   end
 
@@ -13,7 +13,7 @@ describe 'rabbitmq installation' do
       sleep 5
     end
 
-    describe service('rabbitmq') do
+    describe service('rabbitmq-server') do
       it { should be_running }
     end
   end
