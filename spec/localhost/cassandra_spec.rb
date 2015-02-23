@@ -17,7 +17,7 @@ describe 'cassandra installation' do
       it { should be_running } 
     end
 
-    describe command ('cassandra-cli -host localhost -port 9160') do
+    describe command ('cassandra-cli -host localhost -port 9160 &') do
       its(:stdout) { should match 'Connected to: \"Test Cluster\" on localhost/9160' }
     end
 
