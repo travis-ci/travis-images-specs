@@ -25,8 +25,4 @@ describe 'cassandra installation' do
       its(:stdout) { should include( 'Value inserted', 'Returned 3 results', 'name=age', 'value=45', 'name=first', 'value=Allen', 'name=last', 'value=Dakota' ) }
     end
   end
-
-
-
-
-
+end
