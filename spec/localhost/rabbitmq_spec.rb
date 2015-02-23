@@ -13,7 +13,7 @@ describe 'rabbitmq installation' do
       sleep 5
     end
 
-    describe service('rabbitmq-server') do
+    describe service('rabbitmq') do
       it { should be_running }
     end
 
@@ -22,7 +22,7 @@ describe 'rabbitmq installation' do
     end
 
     describe command ('sudo rabbitmqctl status') do
-      its(:stdout) { should match 'Status of node rabbit@localhost','running_applications' }
+      its(:stdout) { should include('Status of node rabbit@localhost','running_applications') }
     end
   end
 
