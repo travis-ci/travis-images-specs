@@ -9,7 +9,7 @@ describe 'cassandra installation' do
   describe 'cassandra commands', sudo: true do
 
     before :all do
-      system('sudo /etc/inid.d/cassandra start')
+      system('sudo /etc/init.d/cassandra start')
       system('sleep 10')
     end
 
