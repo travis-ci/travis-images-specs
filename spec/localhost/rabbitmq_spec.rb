@@ -28,19 +28,19 @@ describe 'rabbitmq installation' do
     describe 'rabbitmqadmin commands' do
 
       before do
-        system('.bin/rabbitmqadmin declare queue name=my-test-queue durable=false')
-        system('.bin/rabbitmqadmin publish exchange=amq.default routing_key=my-test-queue payload="hello, world" ')
+        system('./bin/rabbitmqadmin declare queue name=my-test-queue durable=false')
+        system('./bin/rabbitmqadmin publish exchange=amq.default routing_key=my-test-queue payload="hello, world" ')
       end
 
-      describe command ('.bin/rabbitmqadmin list queues') do
+      describe command ('./bin/rabbitmqadmin list queues') do
         its(:stdout) { should include('my-test-queue', '1') }
       end
 
-      describe command ('.bin/rabbitmqadmin get queue=my-test-queue requeue=false') do
+      describe command ('./bin/rabbitmqadmin get queue=my-test-queue requeue=false') do
         its(:stdout) { should include('my-test-queue', 'hello, world') }
       end
 
-      describe command ('.bin/rabbitmqadmin list queues') do
+      describe command ('./bin/rabbitmqadmin list queues') do
         its(:stdout) { should include('my-test-queue', '0') }
       end
 
