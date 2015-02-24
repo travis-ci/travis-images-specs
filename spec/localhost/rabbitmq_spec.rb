@@ -8,7 +8,7 @@ describe 'rabbitmq installation' do
 
   describe 'rabbitmq commands', sudo: true do
 
-    before do
+    before :all do
       system('sudo service rabbitmq-server start')
       sleep 5
     end
@@ -27,7 +27,7 @@ describe 'rabbitmq installation' do
 
     describe 'rabbitmqadmin commands' do
 
-      before do
+      before :all do
         system('./bin/rabbitmqadmin declare queue name=my-test-queue durable=false')
         system('./bin/rabbitmqadmin publish exchange=amq.default routing_key=my-test-queue payload="hello, world" ')
       end
