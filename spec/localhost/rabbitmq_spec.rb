@@ -41,7 +41,7 @@ describe 'rabbitmq installation' do
         its(:stdout) { should include('my-test-queue', 'hello, world') }
       end
 
-      describe command ('./bin/rabbitmqadmin list queues') do
+      describe command ('sleep 2; ./bin/rabbitmqadmin list queues') do
         its(:stdout) { should include('my-test-queue', '0') }
       end
 
