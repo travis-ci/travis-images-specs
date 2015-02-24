@@ -8,12 +8,8 @@ describe 'maven installation' do
   describe 'mvm commands are executed' do
 
     before do
-      system('mvn archetype:generate 
-              -DgroupId=com.test.app 
-              -DartifactId=test-app 
-              -DarchetypeArtifactId=maven-archetype-quickstart 
-              -DinteractiveMode=false; 
-               sleep 60')
+      # create a maven project
+      system('mvn archetype:generate -DgroupId=com.test.app -DartifactId=test-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false; sleep 30')
     end
 
     describe command('cd test-app; mvn package; sleep 15') do
