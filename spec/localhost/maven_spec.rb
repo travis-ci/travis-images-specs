@@ -17,7 +17,7 @@ describe 'maven installation' do
     end
 
     describe command('cd test-app; mvn package; sleep 15') do
-      its(:stdout) { should include ( 'Building my-app 1.0-SNAPSHOT','BUILD SUCCESS')}
+      its(:stdout) { should include('Building my-app 1.0-SNAPSHOT','BUILD SUCCESS')}
     end
 
     describe command('cd test-app; java -cp target/test-app-1.0-SNAPSHOT.jar com.test.app.App') do
