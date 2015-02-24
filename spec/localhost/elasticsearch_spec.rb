@@ -11,14 +11,15 @@ describe 'elasticsearch installation' do
     before :all do
       system('sudo service elasticsearch start')
       system('sleep 5')
+      system('curl -X GET http://localhost:9200/')
+      system('curl -XPUT \'http://localhost:9200/twitter/user/kimchy\' -d \'{ "name" : "Shay Banon" }\'')
+      system('curl -XPUT \'http://localhost:9200/twitter/tweet/1\' -d \' { "user": "kimchy", "postDate": "2009-11-15T13:12:00", "message": "Trying out Elasticsearch" }\'')
     end
 
-    describe command ('sudo service elasticsearch status') do
-      its(:stdout) { should match 'elasticsearch is running' }
+    describe command ('curl -XGET \'http://localhost:9200/twitter/tweet/1?pretty=true\'') do
+      its(:stdout) { should include('Trying out Elasticsearch') }
     end
 
   end
 
 end
-
-
