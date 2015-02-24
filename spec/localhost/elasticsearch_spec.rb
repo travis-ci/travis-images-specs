@@ -21,6 +21,10 @@ describe 'elasticsearch installation' do
       its(:stdout) { should include('Trying out Elasticsearch') }
     end
 
+    describe command ('curl -XGET \'http://localhost:9200/twitter/tweet/_search?q=message:Trying&pretty=true\'') do
+      its(:stdout) { should include('"total" : 1', '"user": "kimchy"', '"message": "Trying out Elasticsearch"') }
+    end
+
   end
 
 end
