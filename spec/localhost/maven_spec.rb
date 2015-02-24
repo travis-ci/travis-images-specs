@@ -5,19 +5,10 @@ describe 'maven installation' do
     its(:stdout) { should match 'Apache Maven 3.2.5' }
   end
 
-  describe 'mvm commands are executed' do
+  describe 'mvn command is executed' do
 
-    before do
-      # create a maven project
-      system('mvn archetype:generate -DgroupId=com.test.app -DartifactId=test-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false; sleep 30')
-    end
-
-    describe command('cd test-app; mvn package; sleep 15') do
-      its(:stdout) { should include('Building my-app 1.0-SNAPSHOT','BUILD SUCCESS')}
-    end
-
-    describe command('cd test-app; java -cp target/test-app-1.0-SNAPSHOT.jar com.test.app.App') do
-      its(:stdout) { should match 'Hello World!'}
+    describe command('mvn help:describe -Dplugin=help; sleep 5') do
+      its(:stdout) { should match 'Name: Maven Help Plugin' }
     end
   end
 end
