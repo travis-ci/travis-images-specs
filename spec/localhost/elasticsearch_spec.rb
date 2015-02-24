@@ -12,6 +12,7 @@ describe 'elasticsearch installation' do
       system('sudo service elasticsearch start')
       system('sleep 5')
       system('curl -X GET http://localhost:9200/')
+      system('sleep 5')
       system('curl -XPUT \'http://localhost:9200/twitter/user/kimchy\' -d \'{ "name" : "Shay Banon" }\'')
       system('curl -XPUT \'http://localhost:9200/twitter/tweet/1\' -d \' { "user": "kimchy", "postDate": "2009-11-15T13:12:00", "message": "Trying out Elasticsearch" }\'')
     end
