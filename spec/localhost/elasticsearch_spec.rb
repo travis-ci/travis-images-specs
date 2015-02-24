@@ -15,6 +15,7 @@ describe 'elasticsearch installation' do
     describe command ('sudo service elasticsearch status') do
       its(:stdout) { should match 'elasticsearch is running' }
     end
+  end
 end
 
 
