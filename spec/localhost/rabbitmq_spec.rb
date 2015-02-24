@@ -30,10 +30,9 @@ describe 'rabbitmq installation' do
       before :all do
         system('./bin/rabbitmqadmin declare queue name=my-test-queue durable=false')
         system('./bin/rabbitmqadmin publish exchange=amq.default routing_key=my-test-queue payload="hello, world" ')
-        sleep 2
       end
 
-      describe command ('./bin/rabbitmqadmin list queues') do
+      describe command ('sleep 2; ./bin/rabbitmqadmin list queues') do
         its(:stdout) { should include('my-test-queue', '1') }
       end
 
@@ -48,19 +47,3 @@ describe 'rabbitmq installation' do
     end
   end
 end
-
-
-
-
-
-#sudo service rabbitmq-server start
-#curl https://raw.githubusercontent.com/rabbitmq/rabbitmq-management/rabbitmq_v3_4_4/bin/rabbitmqadmin > rabbitmqadmin
-#sudo chmod 755 rabbitmqadmin
-#./rabbitmqadmin declare queue name=my-new-queue durable=false
-#./rabbitmqadmin publish exchange=amq.default routing_key=my-new-queue payload="hello, world"
-#./rabbitmqadmin list queues
-##expect 1
-#./rabbitmqadmin get queue=my-new-queue requeue=false
-##expect payload
-#./rabbitmqadmin list queues
-##expect 0
