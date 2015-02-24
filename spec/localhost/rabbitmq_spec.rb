@@ -30,6 +30,7 @@ describe 'rabbitmq installation' do
       before :all do
         system('./bin/rabbitmqadmin declare queue name=my-test-queue durable=false')
         system('./bin/rabbitmqadmin publish exchange=amq.default routing_key=my-test-queue payload="hello, world" ')
+        sleep 2
       end
 
       describe command ('./bin/rabbitmqadmin list queues') do
