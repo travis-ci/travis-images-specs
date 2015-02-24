@@ -13,7 +13,7 @@ describe 'maven installation' do
               -DartifactId=test-app 
               -DarchetypeArtifactId=maven-archetype-quickstart 
               -DinteractiveMode=false; 
-               sleep 25')
+               sleep 60')
     end
 
     describe command('cd test-app; mvn package; sleep 15') do
