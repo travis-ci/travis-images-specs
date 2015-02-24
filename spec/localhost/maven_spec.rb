@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'maven installation' do
-  describe command('mvn version') do
+  describe command('mvn -version') do
     its(:stdout) { should match 'Apache Maven 3.2.5' }
   end
 
