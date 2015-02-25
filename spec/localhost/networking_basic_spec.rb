@@ -25,7 +25,7 @@ describe 'networking_basic installation' do
     its(:stdout) { should match 'This is nc from the netcat-openbsd package.' }
   end
 
-  describe command('ldconfig -p; grep libldap') do
+  describe command('ldconfig -p | grep libldap') do
     its(:stdout) { should match 'libldap_r-2.4.so.2' }
   end
 
