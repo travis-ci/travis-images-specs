@@ -8,4 +8,16 @@ describe 'xserver installation' do
     end
   end
 
+  describe 'starting virtual server' do
+    before do
+      system('export DISPLAY=:99.0')
+      system('sh -e /etc/init.d/xvfb start')
+      system('sleep 5')
+    end
+
+    describe command('xset -q') do
+      its(:exit_status) { should eq 0 }
+    end
+  end
+
 end
