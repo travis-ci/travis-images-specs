@@ -6,7 +6,6 @@ describe 'maven installation' do
   end
 
   describe 'mvn command is executed' do
-
     describe command('mvn help:describe -Dplugin=help; sleep 5') do
       its(:stdout) { should match 'Name: Maven Help Plugin' }
     end
