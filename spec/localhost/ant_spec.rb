@@ -2,16 +2,16 @@ require 'spec_helper'
 
 describe 'ant installation' do
   describe command('ant -version') do
-    its(:stdout) { should match 'Apache Ant(TM) version' }
+    its(:stdout) { should match 'Apache Ant(TM) version 1.8.2 compiled on December 3 2011' }
   end
 
   describe 'ant command is executed' do
     describe command('ant -diagnostics') do
-      its(:stdout) { should include('------- Ant diagnostics report -------', 'ANT PROPERTIES', 'System Properties') }
+      its(:stdout) { should include('Ant diagnostics report', 'ANT PROPERTIES', 'System Properties') }
     end
 
     describe command('ant &') do
-      its(:stdout) { should match 'Buildfile: build.xml does not exist! Build failed' }
+      its(:stdout) { should match 'Buildfile: build.xml does not exist!\nBuild failed' }
     end
   end
 end
