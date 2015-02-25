@@ -11,7 +11,7 @@ describe 'gimme commands are executed' do
     its(:stdout) { should match '1.4.1 \<\= current' }
   end
 
-  describe command('gimme 1.3; source ~/.gimme/envs/go1.3.env; sleep 5; go version') do
+  describe command('eval \"$(gimme 1.3)\"; sleep 5; go version') do
     its(:stdout) { should match 'go version go1.3 linux/amd64' }
   end
 end
