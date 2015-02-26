@@ -7,7 +7,7 @@ describe 'mercurial installation' do
 end
 
 describe 'mecurial commands are executed' do
-  describe command('hg init test-project; sleep 3; cd test-project; sleep 3; touch test-file.txt; sleep 3; hg status') do
+  describe command('hg init test-project; sleep 3; cd ./spec/test-project; sleep 3; touch test-file.txt; sleep 3; hg status') do
     its(:stdout) { should match '? test-file.txt' }
   end
 
