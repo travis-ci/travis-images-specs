@@ -15,7 +15,7 @@ describe 'xserver installation' do
       system('sleep 10')
     end
 
-    describe command('xset -q') do
+    describe command('export DISPLAY=:99.0; xset -q') do
       #xset -q tests if X server is reachable
       its(:exit_status) { should eq 0 }
     end
