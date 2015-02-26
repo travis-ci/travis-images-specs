@@ -11,7 +11,7 @@ describe 'openssl commands are executed' do
     its(:stdout) { should match 'S29uc3RhbnRpbiBicm9rZSBhbGwgdGhlIHRoaW5ncy4K' }
   end
 
-  describe command('echo "S29uc3RhbnRpbiBicm9rZSBhbGwgdGhlIHRoaW5ncy4K" | openssl enc -base6 -d') do
+  describe command('echo "S29uc3RhbnRpbiBicm9rZSBhbGwgdGhlIHRoaW5ncy4K" | openssl enc -base64 -d') do
     its(:stdout) { should match 'Konstantin broke all the things.' }
   end
 end
