@@ -16,6 +16,7 @@ describe 'xserver installation' do
     end
 
     describe command('xset -q') do
+      #xset -q tests if X server is reachable
       its(:exit_status) { should eq 0 }
     end
   end
