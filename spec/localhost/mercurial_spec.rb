@@ -16,7 +16,7 @@ describe 'mecurial commands are executed' do
   end
 
   describe command('cd test-project; hg add .; hg status') do
-    its(:stdout) { should match '\A test-file.txt' }
+    its(:stdout) { should match 'A test-file.txt' }
   end
 
    describe command('cd test-project; hg add .; hg forget test-file.txt; hg status') do
