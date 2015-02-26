@@ -16,7 +16,7 @@ describe 'git commands are executed' do
   end
 
   describe command('cd test-project; git add .; git status') do
-    its(:stdout) { should include('Changes to be committed', 'new file:   test_file.txt') }
+    its(:stdout) { should include('Changes to be committed:', 'new file:   test-file.txt') }
   end
 
    describe command('cd test-project; git add .; git rm -f test-file.txt; git status') do
