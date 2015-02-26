@@ -7,7 +7,7 @@ describe 'mercurial installation' do
 end
 
 describe 'mecurial commands are executed' do
-  before do
+  before :all do
     system('hg init test-project; sleep 3; cd test-project; sleep 3; touch test-file.txt')
   end
 
