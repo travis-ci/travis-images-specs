@@ -10,8 +10,8 @@ describe 'xserver installation' do
 
   describe 'starting virtual server' do
     before do
-      system('export DISPLAY=:99.0')
-      system('sh -e /etc/init.d/xvfb start')
+      #system('export DISPLAY=:99.0')
+      system('DISPLAY=:99.0 sh -e /etc/init.d/xvfb start')
       system('sleep 10')
     end
 
