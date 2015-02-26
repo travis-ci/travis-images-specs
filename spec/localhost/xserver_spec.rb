@@ -12,7 +12,7 @@ describe 'xserver installation' do
     before do
       system('export DISPLAY=:99.0')
       system('sh -e /etc/init.d/xvfb start')
-      system('sleep 5')
+      system('sleep 10')
     end
 
     describe command('xset -q') do
