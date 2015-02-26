@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'openssl installation' do
-  describe command('openssl version') doop
+  describe command('openssl version') do
     its(:stdout) { should match 'OpenSSL 1.0.1 14 Mar 2012' }
   end
 end
