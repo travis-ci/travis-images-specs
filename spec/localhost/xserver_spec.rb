@@ -11,6 +11,7 @@ describe 'xserver installation' do
   describe 'starting virtual server' do
     before do
       system('DISPLAY=:99.0 sh -e /etc/init.d/xvfb start')
+      system('sleep 5')
     end
 
     describe command('DISPLAY=:99.0 xset -q') do
