@@ -11,7 +11,7 @@ describe 'ccache commands are executed' do
     its(:stdout) { should include('cache directory', 'cache hit', 'cache miss', 'files in cache', 'max cache size') }
   end
 
-  describe command('ccache -M 3') do
-    its(:stdout) { should match 'Set cache size limit to 3.0 Gbytes' }
+  describe command('ccache -M 0.5') do
+    its(:stdout) { should match 'Set cache size limit to 512.0 Mbytes' }
   end
 end
