@@ -15,11 +15,11 @@ describe 'git commands are executed' do
     its(:stdout) { should include('Untracked files:', 'test-file.txt') }
   end
 
-  describe command('cd test-project; git add .; git status') do
+  describe command('cd test-project; git add test-file.txt; git status') do
     its(:stdout) { should include('Changes to be committed:', 'new file:   test-file.txt') }
   end
 
-   describe command('cd test-project; git add .; git rm -f test-file.txt; git status') do
+   describe command('cd test-project; git add test-file.txt; git rm -f test-file.txt; git status') do
     its(:stdout) { should match 'nothing to commit' }
   end
 end
