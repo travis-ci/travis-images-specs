@@ -20,6 +20,6 @@ describe 'bazaar commands are executed' do
   end
 
    describe command('cd test-project; bzr status') do
-    its(:stdout) { should include('added:', 'test-file.rb' }
+    its(:stdout) { should include('added:', 'test-file.rb') }
   end
 end
