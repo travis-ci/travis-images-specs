@@ -17,5 +17,9 @@ describe 'firefox installation' do
       its(:stdout) { should match 'Success' }
     end
 
+    describe command('cat ~/.mozilla/firefox/profiles.ini') do
+      its(:stdout) { should match 'Name=test' }
+    end
+
   end
 end
