@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'phantomjs installation' do
 
-  describe package('phantomjs') do
-    it { should be_installed }
+  describe command('phantomjs -v') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe command ('phantomjs ./spec/files/phantomjs_test_google.js') do
