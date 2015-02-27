@@ -7,7 +7,7 @@ describe 'subversion installation' do
 end
 
 describe 'subversion commands are executed' do
-  describe command('svnadmin create svn-project; cat svn-project README.txt') do
+  describe command('svnadmin create svn-project; cat svn-project/README.txt') do
     its(:stdout) { should match 'This is a Subversion repository;' }
   end
 end
