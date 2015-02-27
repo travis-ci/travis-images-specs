@@ -21,3 +21,25 @@ describe 'unarchivers installation' do
     its(:stdout) { should match 'Status: install ok installed' }
   end
 end
+
+describe 'unarchivers commands' do
+  describe command('gzip ./spec/files/unarchivers.txt; ls ./spec/files/') do
+    its(:stdout) { should include('unarchivers.txt.gz') }
+  end
+
+  describe command('gzip -d ./spec/files/unarchivers.txt; cat ./spec/files/unarchivers.txt') do
+    its(:stdout) { should match 'Konstantin broke all the things.' }
+  end
+
+  # describe command('bzip2 --version') do
+  #   its(:stdout) { should match 'bzip2, a block-sorting file compressor.' }
+  # end
+
+  # describe command('zip --version') do
+  #   its(:stdout) { should match 'This is Zip 3.0' }
+  # end
+
+  # describe command('unzip -version') do
+  #   its(:stdout) { should match 'UnZip 6.00 of 20 April 2009' }
+  # end
+end
