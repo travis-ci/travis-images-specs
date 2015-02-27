@@ -22,12 +22,12 @@ describe 'firefox installation' do
     end
   end
 
-  describe 'firefox writing visit in database' do
+  describe 'firefox saves visit in database' do
 
     before do
       system('DISPLAY=:99.0 sh -e /etc/init.d/xvfb start')
       system('firefox --display=DISPLAY=:99.0 https://www.mozilla.org')
-      system('sleep 5')
+      system('SIGINT')
     end
 
     describe command('cd .mozilla/firefox/*.default; sqlite3 places.sqlite "SELECT * FROM moz_places;"') do
