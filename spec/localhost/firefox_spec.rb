@@ -20,9 +20,18 @@ describe 'firefox installation' do
     describe command('cat ~/.mozilla/firefox/profiles.ini') do
       its(:stdout) { should match 'Name=test' }
     end
+  end
 
-    describe command('cd .mozilla/firefox/*.test') do
-      its(:exit_status) { should eq 0 }
+  describe 'firefox writing visit in database' do
+
+    before do
+      system('DISPLAY=:99.0 sh -e /etc/init.d/xvfb start')
+      system('firefox --display=DISPLAY=:99.0 https://www.mozilla.org')
+      system('sleep 5')
+    end
+
+    describe command('cd .mozilla/firefox/*.default; sqlite3 places.sqlite "SELECT * FROM moz_places;"') do
+      its(:stdout) { should match 'www.mozilla.org' }
     end
   end
 end
