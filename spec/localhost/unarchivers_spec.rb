@@ -39,11 +39,15 @@ describe 'unarchivers commands' do
     its(:stdout) { should match 'Konstantin broke all the things.' }
   end
 
-  # describe command('zip --version') do
-  #   its(:stdout) { should match 'This is Zip 3.0' }
-  # end
+  describe command('zip ./spec/files/unarchivers.txt.zip ./spec/files/unarchivers.txt') do
+    its(:stdout) { should match 'adding: unarchivers.txt (stored 0%)' }
+  end
 
-  # describe command('unzip -version') do
-  #   its(:stdout) { should match 'UnZip 6.00 of 20 April 2009' }
-  # end
+  describe command('ls ./spec/files/') do
+    its(:stdout) { should include('unarchivers.txt.zip') }
+  end
+
+  describe command('unzip ./spec/files/unarchivers.txt.zip') do
+    its(:stdout) { should match 'Konstantin broke all the things' }
+  end
 end
