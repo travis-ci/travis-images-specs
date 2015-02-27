@@ -27,7 +27,7 @@ describe 'firefox installation' do
     before do
       system('DISPLAY=:99.0 sh -e /etc/init.d/xvfb start')
       system('firefox --display=DISPLAY=:99.0 https://www.mozilla.org')
-      system('') # here I need to exit out of the runnign browswer!
+      system('pkill firefox') # here I need to exit out of the runnign browswer!
     end
 
     #describe command('cd .mozilla/firefox/*.default; sqlite3 places.sqlite "SELECT * FROM moz_places;"') do
