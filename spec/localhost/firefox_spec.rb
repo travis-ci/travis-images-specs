@@ -21,5 +21,8 @@ describe 'firefox installation' do
       its(:stdout) { should match 'Name=test' }
     end
 
+    describe command('cd .mozilla/firefox/*.test')
+      its(:exit_status) { should eq 0 }
+    end
   end
 end
