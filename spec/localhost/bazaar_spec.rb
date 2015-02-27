@@ -12,7 +12,7 @@ describe 'bazaar commands are executed' do
   end
 
   describe command('cd test-project; bzr status') do
-    its(:stdout) { should match 'unknown:\ntest-file.rb' }
+    its(:stdout) { should include('unknown:', 'test-file.rb') }
   end
 
   describe command('cd test-project; bzr add test-file.rb') do
@@ -20,6 +20,6 @@ describe 'bazaar commands are executed' do
   end
 
    describe command('cd test-project; bzr status') do
-    its(:stdout) { should match 'added:\ntest-file.rb' }
+    its(:stdout) { should include('added:', 'test-file.rb' }
   end
 end
