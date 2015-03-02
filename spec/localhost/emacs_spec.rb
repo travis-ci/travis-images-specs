@@ -8,13 +8,13 @@ describe 'emacs installation' do
 
   describe 'read file with emacs' do
     before do
-      system('emacs -batch ./files/flower.txt --eval \'(insert "Butterblume")\' -f save-buffer')
+      system('emacs -batch ./spec/files/flower.txt --eval \'(insert "Butterblume")\' -f save-buffer')
     end
     #describe command('emacs --batch -l butterblume.txt') do
       #its(:stdout) { should match 'Butterblume' }
     #end
 
-    describe command('cat ./files/flower.txt') do
+    describe command('cat ./spec/files/flower.txt') do
       its(:stdout) { should match 'Butterblume' }
     end
   end
