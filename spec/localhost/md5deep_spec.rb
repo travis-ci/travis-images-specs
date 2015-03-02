@@ -11,7 +11,7 @@ describe 'md5deep installation' do
 end
 
 describe 'm5deep commands' do
-  describe command('m5deep ./spec/files/md5deep.txt') do
+  describe command('md5deep ./spec/files/md5deep.txt') do
     its(:stdout) { should match 'cda48816cce93aabcc05b2412d9e87fc'}
   end
 end
