@@ -43,7 +43,7 @@ describe 'unarchivers commands' do
     its(:stdout) { should include('unarchivers.txt.zip') }
   end
 
-  describe command('unzip ./spec/files/unarchivers2.txt.zip; sleep 2; cat .spec/files/unarchivers2.txt') do
+  describe command('unzip ./spec/files/unarchivers2.txt.zip; sleep 2; cat unarchivers2.txt') do
     its(:stdout) { should match 'Konstantin broke all the things' }
   end
 end
