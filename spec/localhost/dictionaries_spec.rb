@@ -7,11 +7,11 @@ describe 'dictionaries installation' do
 end
   
 describe 'dictionaries commands' do
-  describe command('look colonized') do
+  describe command('look colonize') do
     its(:stdout) { should include('colonize', 'colonized', 'colonizer') }
   end
   
-  describe command('look colonised') do
-    its(:stdout) { should match nil }
+  describe command('look colonise') do
+    its(:stdout) { should equal nil }
   end
 end
