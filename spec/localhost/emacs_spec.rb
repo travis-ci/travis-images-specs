@@ -7,16 +7,15 @@ describe 'emacs installation' do
   end
 
   describe 'read file with emacs' do
-    before :all do
-      system('echo "Butterblume" > butterblume.txt')
+    before do
+      system('emacs -batch ./files/flower.txt --eval \'(insert "Butterblume")\' -f save-buffer')
     end
+    #describe command('emacs --batch -l butterblume.txt') do
+      #its(:stdout) { should match 'Butterblume' }
+    #end
 
-    describe command('emacs --batch -l butterblume.txt') do
+    describe command('cat ./files/flower.txt') do
       its(:stdout) { should match 'Butterblume' }
-    end
-
-    describe command('emacs --batch -l ./spec/files/flower.el butterblume.txt -f flower') do
-      its(:stdout) { should match 'Wrote' }
     end
   end
 
