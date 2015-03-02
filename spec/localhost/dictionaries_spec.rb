@@ -8,11 +8,6 @@ end
   
 describe 'dictionaries commands' do
   describe command('look colonize') do
-    its(:stdout) { should include('colonize', 'colonized', 'colonizer') }
-  end
-  
-  describe command('look colonise') do
-    expect(:stdout).to eq('')
-    # its(:stdout(actual)) { should equal '' }
+    its(:stdout) { should include('colonize', 'colonized', 'colonizer', 'colonizers', 'colonizes') }
   end
 end
