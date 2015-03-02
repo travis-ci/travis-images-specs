@@ -7,7 +7,7 @@ describe 'jq installation' do
 
   describe 'jq command is executed' do
     describe command('cat ./spec/files/jq.json | jq ".[0] | {message: .commit.message, name: .commit.committer.name}"') do
-      its(:stdout) { should match '"message": "Konstantin broke all the things.",\n"name": "Tyranja"' }
+      its(:stdout) { should match '{\n  \"message\": \"Konstantin broke all the things.\",\n  \"name\": \"Tyranja\"\n}\n' }
     end
   end
 end
