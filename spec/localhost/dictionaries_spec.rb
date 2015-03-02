@@ -12,6 +12,6 @@ describe 'dictionaries commands' do
   end
   
   describe command('look colonise') do
-    its(:stdout) { should equal '') }
+    its(:stdout) { should equal '' }
   end
 end
