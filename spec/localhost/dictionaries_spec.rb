@@ -11,7 +11,7 @@ describe 'dictionaries installation' do
     end
     
     describe command('look colonised') do
-      its(:stdout) { should match nil }
+      its(:stdout) { should equal(nil) }
     end
   end
 end
