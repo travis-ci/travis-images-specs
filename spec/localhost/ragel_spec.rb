@@ -14,6 +14,7 @@ describe 'ragel installation' do
     before do
       system('echo "puts \"Hello World\"" > ./spec/files/hello_world.rl')
       system('ragel -R hello_world.rl')
+      system('sleep 4')
     end
 
     describe command('cat ./spec/files/hello_world.rb') do
