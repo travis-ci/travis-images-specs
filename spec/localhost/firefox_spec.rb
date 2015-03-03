@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'firefox installation' do
 
   describe command('firefox -v') do
-    its(:exist_status) { should eq 0 }
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'firefox start' do
