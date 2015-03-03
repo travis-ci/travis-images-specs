@@ -10,5 +10,15 @@ describe 'ragel installation' do
     its(:exit_status) { should eq 0 }
   end
 
+  describe 'add a ragel file and execute a ragel command' do
+    before do
+      system('echo "puts \"Hello World\"" > ./spec/files/hello_world.rl')
+      system('ragel -R hello_world.rl')
+    end
+
+    describe command('cat ./spec/files/hello_world.rb') do
+      its(:stdout) { should match 'puts "Hello World"' }
+    end
+
 end
 
