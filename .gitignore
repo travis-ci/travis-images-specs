@@ -1,3 +1,2 @@
 config/travis.yml
-.gitignore
 .env
