@@ -2,8 +2,8 @@ require 'spec_helper'
 
 describe 'firefox installation' do
 
-  describe package('firefox') do
-    it { should be_installed }
+  describe command('firefox -v') do
+    its(:exist_status) { should eq 0 }
   end
 
   describe 'firefox start' do
