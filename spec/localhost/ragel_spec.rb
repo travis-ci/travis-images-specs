@@ -19,6 +19,6 @@ describe 'ragel installation' do
     describe command('cat ./spec/files/hello_world.rb') do
       its(:stdout) { should match 'puts "Hello World"' }
     end
-
+  end
 end
 
