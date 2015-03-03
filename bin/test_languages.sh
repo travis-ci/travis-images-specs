@@ -10,7 +10,7 @@
 set -e
  
 langs=$@
-url=https://api.travis-ci.com/requests
+url=https://api.travis-ci.org/requests
  
 for lang in $langs; do
   data='
