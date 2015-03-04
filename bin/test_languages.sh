@@ -16,7 +16,7 @@ for lang in $langs; do
   data='
     {
       "request": {
-        "language": "'$lang'",
+        "config": { "language": "'$lang'" },
         "message": "Test language '$lang'",
         "repository": { "owner_name": "travis-ci", "name": "travis-images-specs" }
       }
