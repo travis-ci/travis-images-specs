@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'python and pip installation ' do
 
   describe command('python --version') do
-    its(:stdout) { should match 'Python 2.7.3'}
+    its(:exit_status) { should eq 0 }
   end
 
   describe command('pip --version') do
