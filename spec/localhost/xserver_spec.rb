@@ -9,11 +9,6 @@ describe 'xserver installation' do
   end
 
   describe 'starting virtual server' do
-    before do
-      system('DISPLAY=:99.0 sh -e /etc/init.d/xvfb start')
-      system('sleep 15')
-    end
-
     describe command('DISPLAY=:99.0 xset -q') do
       #xset -q tests if X server is reachable
       its(:exit_status) { should eq 0 }
