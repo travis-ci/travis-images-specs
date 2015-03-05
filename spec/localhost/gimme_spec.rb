@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'gimme installation' do
   describe command('gimme --version') do
-    its(:stdout) { should match 'v0.2.2' }
+    its(:exit_status) { should eq 0 }
   end
 end
 
