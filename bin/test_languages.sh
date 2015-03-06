@@ -13,17 +13,21 @@ langs=$@
 url=https://api.travis-ci.org/requests
 
 
-for lang in $langs; do
-  data='
-    {
-      "request": {
-        "config": { "language": "'$lang'" },
-        "message": "Test language '$lang'",
-        "repository": { "owner_name": "travis-ci", "name": "travis-images-specs" }
+for sudo in true false; do
+  for lang in $langs; do
+    data='
+      {
+        "request": {
+          "config": { "language": "'$lang'" },
+          "sudo": "'$sudo'",
+          "message": "Test language '$lang'",
+          "repository": { "owner_name": "travis-ci", "name": "travis-images-specs" }
+        }
       }
-    }
-  '
+    '
 
-  echo "Triggering requests for testing the $lang image"
-  echo $(curl -s -X POST -H "Content-Type: application/json" -H "Authorization: token $TRAVIS_ACCESS_TOKEN" -d "$data" $url)
+    echo "Triggering requests for testing the $lang image"
+    echo $sudo
+    echo $(curl -s -X POST -H "Content-Type: application/json" -H "Authorization: token $TRAVIS_ACCESS_TOKEN" -d "$data" $url)
+  done
 done
