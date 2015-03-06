@@ -20,14 +20,14 @@ for sudo in true false; do
         "request": {
           "config": { "language": "'$lang'" },
           "sudo": "'$sudo'",
-          "message": "Test language '$lang'",
+          "message": "Test language '$lang' with sudo '$sudo'",
           "repository": { "owner_name": "travis-ci", "name": "travis-images-specs" }
         }
       }
     '
 
     echo "Triggering requests for testing the $lang image"
-    echo $sudo
+    echo "With Sudo: $sudo"
     echo $(curl -s -X POST -H "Content-Type: application/json" -H "Authorization: token $TRAVIS_ACCESS_TOKEN" -d "$data" $url)
   done
 done
