@@ -11,6 +11,3 @@ before_script:
 
 script:
   - bundle exec rspec $(sudo -n true || echo "--tag ~sudo") ./spec
-  # - bundle exec rspec spec/ --tag ~sudo
-
-  # - bundle exec rspec spec/
