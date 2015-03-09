@@ -11,7 +11,7 @@ describe 'python and pip installation ' do
   end
 
   describe command('pip --version'), sudo: false do
-    its(:stdout) { should match 'pip 6.0.7'}
+    its(:stdout) { should match 'pip 6.0.8'}
   end
 
 end
