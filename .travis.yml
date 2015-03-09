@@ -10,4 +10,4 @@ before_script:
   - sh -e /etc/init.d/xvfb start
 
 script:
-  - bundle exec rspec spec/
+  - bundle exec rspec $(sudo -n true || echo "--tag ~sudo") ./spec
