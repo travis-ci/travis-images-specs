@@ -18,8 +18,7 @@ for sudo in true false; do
     data='
       {
         "request": {
-          "config": { "language": "'$lang'" },
-          "sudo": "'$sudo'",
+          "config": { "language": "'$lang'", "sudo": '$sudo' },
           "message": "Test language '$lang' with sudo '$sudo'",
           "repository": { "owner_name": "travis-ci", "name": "travis-images-specs" }
         }
