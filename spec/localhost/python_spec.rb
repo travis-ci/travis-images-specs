@@ -6,13 +6,13 @@ describe 'python and pip installation ' do
     its(:exit_status) { should eq 0 }
   end
 
-  describe command('pip --version'), sudo: true do
+  describe command('pip --version') do
     its(:stdout) { should match 'pip 6.0.7'}
   end
 
-  describe command('pip --version'), sudo: false do
-    its(:stdout) { should match 'pip 6.0.8'}
-  end
+  #describe command('pip --version'), sudo: false do
+    #its(:stdout) { should match 'pip 6.0.8'}
+  #end
 
 end
 
