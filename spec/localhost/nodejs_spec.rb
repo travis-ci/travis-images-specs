@@ -6,6 +6,6 @@ describe 'nodejs installation' do
   end
 
   describe command('node ./spec/files/node_server.js &') do
-    its(:stdout) { should match 'Server running at http://127.0.0.1:1337/'}
+    its(:stdout) { should match 'Server running at http://127.0.0.1:8888/'}
   end
 end
