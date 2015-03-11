@@ -12,7 +12,7 @@ In order to test languages other than Ruby, and run tests where sudo privileges 
 This script sends build requests for different build-images using a beta feature of the Travis api.
 Run the script by passing languages as options eg:
 
-```test_languages.sh ruby python php```
+```./bin/test_languages.sh ruby python php```
 
 will send seperate build requests for ruby, python, and php, once with sudo set to true, once with sudo set to false.
 
