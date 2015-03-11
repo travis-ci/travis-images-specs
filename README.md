@@ -3,6 +3,8 @@ Tests for Travis build images!
 
 These tests check the standard build image to ensure that all components and packages are installed and (where possible) properly operational.
 
+They are designed to be used by whoever is responsible for rolling out build images.
+
 In order to test languages other than Ruby, and run tests where sudo privileges are not available, it is possible to use a shell script included in the /bin directory:
 
 /bin/test_languages.sh
