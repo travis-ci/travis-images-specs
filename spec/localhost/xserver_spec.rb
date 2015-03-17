@@ -4,7 +4,8 @@ describe 'xserver installation' do
 
   describe 'xserver version' do
     before :all do
-      system('Xorg -version')
+      #to much output!
+      #system('Xorg -version')
     end
 
     describe command('Xorg -version') do

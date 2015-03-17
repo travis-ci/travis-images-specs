@@ -3,7 +3,8 @@ require 'spec_helper'
 describe 'unarchivers installation' do
   describe 'gzip version' do
     before :all do
-      system('gzip -version')
+      #to much output!
+      #system('gzip --version')
     end
 
     describe command('gzip --version') do
@@ -11,16 +12,35 @@ describe 'unarchivers installation' do
     end
   end
 
-  describe command('bzip2 --version') do
-    its(:stdout) { should match 'bzip2, a block-sorting file compressor.' }
+  describe 'bzip2 version' do
+    before :all do
+      #to much output!
+      #system('bzip2 --version')
+    end
+
+    describe command('bzip2 --version') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
-  describe command('zip --version') do
-    its(:stdout) { should match 'This is Zip 3.0' }
+  describe 'zip version' do
+    before :all do
+      system('zip --version | head -1')
+    end
+
+    describe command('zip --version') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
-  describe command('unzip -version') do
-    its(:stdout) { should match 'UnZip 6.00 of 20 April 2009' }
+  describe 'unzip version' do
+    before :all do
+      system('unzip -version | head -1')
+    end
+
+    describe command('unzip -version') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
   describe command('dpkg -s libbz2-dev') do
