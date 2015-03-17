@@ -4,7 +4,7 @@ describe 'vim installation' do
 
   describe 'vim version' do
     before :all do
-      system('echo vim --version')
+      system('vim --version')
     end
 
     describe command('vim --version') do

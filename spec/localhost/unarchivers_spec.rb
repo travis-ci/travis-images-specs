@@ -1,8 +1,14 @@
 require 'spec_helper'
 
 describe 'unarchivers installation' do
-  describe command('gzip --version') do
-    its(:stdout) { should match 'gzip 1.4' }
+  describe 'gzip version' do
+    before :all do
+      system('gzip -version')
+    end
+
+    describe command('gzip --version') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
   describe command('bzip2 --version') do
