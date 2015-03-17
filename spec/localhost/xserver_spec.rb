@@ -3,8 +3,11 @@ require 'spec_helper'
 describe 'xserver installation' do
 
   describe 'xserver version' do
-    describe command('Xorg -version') do
+    before :all do
       system('echo Xorg -version')
+    end
+
+    describe command('Xorg -version') do
       its(:exit_status) { should eq 0 }
     end
   end
