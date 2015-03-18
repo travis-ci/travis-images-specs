@@ -6,7 +6,7 @@ describe 'unarchivers installation' do
 
     describe 'gzip version' do
       before :all do
-        system('gzip --version')
+        system('gzip --version 2>&1 | head -1')
       end
 
       describe command('gzip --version') do
@@ -16,7 +16,7 @@ describe 'unarchivers installation' do
 
     describe 'bzip2 version' do
       before :all do
-        system('bbzip2 --version')
+        system('bzip2 --version 2>&1 | head -1')
       end
 
       describe command('bzip2 --version') do

@@ -2,6 +2,16 @@ require 'spec_helper'
 
 describe 'sphinx installation' do
 
+  describe 'sphinx version' do
+    before :all do
+      system('searchd | grep Sphinx | head -1')
+    end
+
+    describe command('searchd') do
+      its(:exit_status) { should eq 0 }
+    end
+  end
+
   describe command('/usr/local/sphinx-2.2.6/bin/indexer') do
     its(:stdout) { should match 'Sphinx 2.2.6-id64-release' }
   end
