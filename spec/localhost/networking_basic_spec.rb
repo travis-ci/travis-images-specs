@@ -1,32 +1,87 @@
 require 'spec_helper'
 
 describe 'networking_basic installation' do
-  describe command('lsof -v') do
-    its(:stdout) { should match 'lsof version information' }
+
+  describe 'lsof version' do
+    before :all do
+      system('lsof -v 2>&1 | head -2 | tail -1')
+    end
+
+    describe command('lsof -v') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
-  describe command('iptables -version') do
-    its(:stdout) { should match 'iptables v1.4.12' }
+  describe 'iptables version' do
+    before :all do
+      system('iptables --version')
+    end
+
+    describe command('iptables --version') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
-  describe command('curl --version') do
-    its(:stdout) { should match 'curl 7.22.0' }
+  describe 'curl version' do
+    before :all do
+      system('curl --version')
+    end
+
+    describe command('curl --version | head -1') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
-  describe command('wget -V') do
-    its(:stdout) { should match 'GNU Wget 1.13.4 built on linux-gnu' }
+  describe 'wget version' do
+    before :all do
+      system('wget --version | head -1')
+    end
+
+    describe command('wget --version') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
-  describe command('rsync -v') do
-    its(:stdout) { should match 'rsync  version 3.0.9  protocol version 30' }
+  describe 'rsync version' do
+    before :all do
+      system('rsync --version | head -1')
+    end
+
+    describe command('rsync --version') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
-  describe command('netcat -v') do
-    its(:stdout) { should match 'This is nc from the netcat-openbsd package.' }
+  describe 'netcat version' do
+    before :all do
+      system('netcat -h 2>&1 | head -1')
+    end
+
+    describe command('netcat -h') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
-  describe command('ldconfig -p | grep libldap') do
-    its(:stdout) { should match 'libldap_r-2.4.so.2' }
+  describe 'netcat command' do
+    describe command('nc -zv localhost 22-25') do
+      its(:stdout) { should include('succeeded') }
+    end
+  end
+
+  describe 'ldconfig version' do
+    before :all do
+      system('ldconfig -V | head -1')
+    end
+
+    describe command('ldconfig -V') do
+      its(:exit_status) { should eq 0 }
+    end
+  end
+
+  describe 'ldconfig command' do
+    describe command('ldconfig -p | grep libldap') do
+      its(:stdout) { should match 'libldap_r-2.4.so.2' }
+    end
   end
 
   describe command('dpkg -s libldap2-dev') do
