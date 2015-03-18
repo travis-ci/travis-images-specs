@@ -1,11 +1,21 @@
 require 'spec_helper'
 
 describe 'nodejs installation' do
-  describe command('node -v') do
-    its(:stdout) { should match 'v0.10.36'}
+
+  describe 'nodejs version' do
+    before :all do
+      system('node -v')
+    end
+
+    describe command('node -v') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
-  describe command('node ./spec/files/node_server.js &') do
-    its(:stdout) { should match 'Server running at http://127.0.0.1:1337/'}
+  describe 'node commands' do
+    describe command('node ./spec/files/node_server.js &') do
+      its(:stdout) { should match 'Server running at http://127.0.0.1:1337/'}
+    end
   end
+
 end

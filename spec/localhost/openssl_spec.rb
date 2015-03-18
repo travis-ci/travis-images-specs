@@ -3,7 +3,9 @@ require 'spec_helper'
 describe 'openssl installation' do
 
   describe 'openssl version' do
-    system('openssl version')
+    before :all do
+      system('openssl version')
+    end
 
     describe command('openssl version') do
       its(:exit_status) { should eq 0 }
