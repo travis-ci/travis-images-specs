@@ -1,13 +1,20 @@
 require 'spec_helper'
 
 describe 'sysctl installation' do
-  describe command('sysctl -V') do
-    its(:stdout) { should match 'sysctl \(procps version 3.2.8\)' }
-  end
-end
 
-describe 'sysctl commands are executed' do
-  describe command('sysctl -a; sleep 5') do
-    its(:stdout) { should include('kernel.sched_child_runs_first', 'kernel.sched_min_granularity_ns', 'net.core.warnings', 'cpt.suspend_timeout_sec' ) }
+  describe 'sysctl version' do
+    before :all do
+      system('sysctl -V | head -1')
+    end
+
+    describe command('sysctl -V') do
+      its(:exit_status) { should eq 0 }
+    end
+  end
+
+  describe 'sysctl commands are executed' do
+    describe command('sysctl -a; sleep 5') do
+      its(:stdout) { should include('kernel.sched_child_runs_first') }
+    end
   end
 end
