@@ -26,7 +26,7 @@ describe 'unarchivers installation' do
 
     describe 'zip version' do
       before :all do
-        system('zip --version | head -1')
+        system('zip --version | head -2 | tail -1')
       end
 
       describe command('zip --version') do
@@ -36,7 +36,7 @@ describe 'unarchivers installation' do
 
     describe 'unzip version' do
       before :all do
-        system('unzip -version | head -1')
+        system('unzip -v | head -1')
       end
 
       describe command('unzip -version') do
