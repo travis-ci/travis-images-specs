@@ -4,8 +4,7 @@ describe 'xserver installation' do
 
   describe 'xserver version' do
     before :all do
-      #to much output!
-      #system('Xorg -version')
+      system('Xorg -version 2>&1 | grep --color=never X.Org')
     end
 
     describe command('Xorg -version') do
