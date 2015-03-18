@@ -12,7 +12,7 @@ describe 'scons installation' do
     end
   end
 
-  describe 'scons commands are executed' do
+  describe 'scons commands' do
     describe command('scons -C ./spec/files; sleep 5') do
       its(:stdout) { should include('scons: Reading SConscript files',
                                     'scons: Building targets',

@@ -6,12 +6,19 @@ describe 'riak installation' do
     it { should be_installed }
   end
 
-  describe 'riak commands', sudo: true do
-  # riak commands can only be tested using sudo
+  describe 'riak version' do
+    before :all do
+      system('riak version')
+    end
 
+    describe command('riak version') do
+      its(:exit_status) { should eq 0 }
+    end
+  end
+
+  describe 'riak commands', sudo: true do
     before do
       system('sudo riak start')
-      # ensure riak config has finished loading
       sleep 5
     end
 
@@ -23,4 +30,5 @@ describe 'riak installation' do
       its(:stdout) { should match 'completed 1 read/write cycle' }
     end
   end
+
 end

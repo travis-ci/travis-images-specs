@@ -12,10 +12,12 @@ describe 'xserver installation' do
     end
   end
 
-  describe 'starting virtual server' do
-    describe command('DISPLAY=:99.0 xset -q') do
-      #xset -q tests if X server is reachable
-      its(:exit_status) { should eq 0 }
+  describe 'xserver starts' do
+    describe 'virtual server' do
+      describe command('DISPLAY=:99.0 xset -q') do
+        #xset -q tests if X server is reachable
+        its(:exit_status) { should eq 0 }
+      end
     end
   end
 

@@ -12,7 +12,10 @@ describe 'rvm installation' do
     end
   end
 
-  describe command('rvm list') do
-    its(:stdout) { should include('rvm rubies', 'current') }
+  describe 'rvm commands' do
+    describe command('rvm list') do
+      its(:stdout) { should include('rvm rubies', 'current') }
+    end
   end
+
 end
