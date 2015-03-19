@@ -8,7 +8,7 @@ describe 'imagemagick installation' do
     end
 
     describe command('convert --version') do
-      its(:stdout) { should eq 0 }
+      its(:exit_status) { should eq 0 }
     end
   end
 
