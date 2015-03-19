@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe 'firefox installation' do
 
+  describe 'firefox version' do
+    before :all do
+      system('firefox -v')
+    end
+  end
+
   describe command('firefox -v') do
     its(:exit_status) { should eq 0 }
   end

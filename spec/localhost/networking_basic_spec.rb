@@ -97,20 +97,13 @@ describe 'networking_basic installation' do
     end
   end
 
-  describe 'libcurl vesion' do
+  describe 'libcurl version' do
     before :all do
       system('curl-config --version')
     end
 
     describe command('curl-config --version') do
       its(:exit_status) { should eq 0 }
-    end
-  end
-
-  describe 'libcurl command' do
-    # TODO ask Carla!
-    describe command('ldconfig -p | grep libcurl') do
-      its(:stdout) { should match 'libcurl.so.4' }
     end
   end
 

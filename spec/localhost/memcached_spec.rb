@@ -11,7 +11,7 @@ describe 'memcached installation' do
       system('memcached -h | head -1')
     end
 
-    describe command('memcached version') do
+    describe command('memcached -h | head -1') do
       its(:exit_status) { should eq 0 }
     end
   end
