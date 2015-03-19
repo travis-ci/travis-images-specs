@@ -84,11 +84,34 @@ describe 'networking_basic installation' do
     end
   end
 
-  describe command('dpkg -s libldap2-dev') do
-    its(:stdout) { should match 'Status: install ok installed' }
+  describe 'libldap2-dev version' do
+    before :all do
+      system('dpkg -s libldap2-dev | head -10 | tail -1')
+    end
   end
 
-  describe command('ldconfig -p | grep libcurl') do
-    its(:stdout) { should match 'libcurl.so.4' }
+
+  describe 'libldap2-dev command' do
+    describe command('dpkg -s libldap2-dev') do
+      its(:stdout) { should match 'Status: install ok installed' }
+    end
   end
+
+  describe 'libcurl vesion' do
+    before :all do
+      system('curl-config --version')
+    end
+
+    describe command('curl-config --version') do
+      its(:exit_status) { should eq 0 }
+    end
+  end
+
+  describe 'libcurl command' do
+    # TODO ask Carla!
+    describe command('ldconfig -p | grep libcurl') do
+      its(:stdout) { should match 'libcurl.so.4' }
+    end
+  end
+
 end
