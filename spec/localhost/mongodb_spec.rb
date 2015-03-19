@@ -2,12 +2,17 @@ require 'spec_helper'
 
 describe 'mongodb installation' do
 
-  describe command ('mongo --version')  do
-    its(:stdout) { should match 'MongoDB shell version' }
+  describe 'mongodb version' do
+    before :all do
+      system('mongo --version')
+    end
+
+    describe command ('mongo --version')  do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
   describe 'mongo commands', sudo: true do
-
     before :all do
       system('sudo service mongodb start')
       system('sleep 10')
