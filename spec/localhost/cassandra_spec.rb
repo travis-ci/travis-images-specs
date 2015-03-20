@@ -11,10 +11,11 @@ describe 'cassandra installation' do
     before :all do
       system('sudo /etc/init.d/cassandra start')
       system('sleep 10')
+      system('cqlsh; exit')
     end
 
     describe service('cassandra') do
-      it { should be_running } 
+      it { should be_running }
     end
 
     describe command ('cassandra-cli -host localhost -port 9160 &') do
