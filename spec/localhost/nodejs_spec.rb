@@ -1,11 +1,21 @@
 require 'spec_helper'
 
 describe 'nodejs installation' do
-  describe command('node -v') do
-    its(:stdout) { should match 'v0.10.36'}
+
+  describe 'nodejs version' do
+    before :all do
+      system('node -v')
+    end
+
+    describe command('node -v') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
-  describe command('node -e "console.log(\'Konstantin broke all the thingz\')"') do
-    its(:stdout) { should match 'Konstantin broke all the thingz'}
+  describe 'node commands' do
+    describe command('node -e "console.log(\'Konstantin broke all the thingz\')"') do
+      its(:stdout) { should match 'Konstantin broke all the thingz'}
+    end
   end
+
 end

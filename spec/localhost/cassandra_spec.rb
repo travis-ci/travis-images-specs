@@ -14,7 +14,7 @@ describe 'cassandra installation' do
     end
 
     describe service('cassandra') do
-      it { should be_running } 
+      it { should be_running }
     end
 
     describe command ('cassandra-cli -host localhost -port 9160 &') do

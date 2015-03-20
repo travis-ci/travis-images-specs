@@ -6,8 +6,17 @@ describe 'couchdb installation' do
     it { should be_installed }
   end
 
-  describe 'couchdb commands', sudo: true do
+  describe 'couchdb version' do
+    before :all do
+      system('couchdb -V | head -1')
+    end
 
+    describe command('couchdb -V') do
+      its(:exit_status) { should eq 0 }
+    end
+  end
+
+  describe 'couchdb commands', sudo: true do
     before :all do
       system('sudo service couchdb start')
       system('sleep 5')
@@ -26,7 +35,6 @@ describe 'couchdb installation' do
     describe command ('curl -X GET http://127.0.0.1:5984/baseball/bat') do
       its(:stdout) { should include("_id", "bat", "Name", "Testname" ) }
     end
-
   end
 
 end
