@@ -17,4 +17,5 @@ describe 'sysctl installation' do
       its(:stdout) { should include('kernel.sched_child_runs_first') }
     end
   end
+
 end
