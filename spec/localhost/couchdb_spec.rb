@@ -11,7 +11,7 @@ describe 'couchdb installation' do
       system('couchdb -V | head -1')
     end
 
-    describe command('couchdb -v') do
+    describe command('couchdb -V') do
       its(:exit_status) { should eq 0 }
     end
   end

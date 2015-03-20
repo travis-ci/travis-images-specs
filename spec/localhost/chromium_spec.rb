@@ -6,8 +6,14 @@ describe 'chromium installation' do
     it { should be_installed }
   end
 
-  describe command('chromium-browser --version') do
-    its(:stdout) { should match 'Chromium' }
+  describe 'chromium version' do
+    before :all do
+      system('chromium-browser --version')
+    end
+
+    describe command('chromium-browser --version') do
+      its(:exit_status) { should eq 0 }
+    end
   end
 
 end
