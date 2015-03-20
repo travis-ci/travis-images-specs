@@ -11,7 +11,6 @@ describe 'cassandra installation' do
     before :all do
       system('sudo /etc/init.d/cassandra start')
       system('sleep 10')
-      system('cqlsh; exit')
     end
 
     describe service('cassandra') do
