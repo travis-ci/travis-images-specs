@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'gimme installation' do
 
-  describe 'gimme vesion' do
+  describe 'gimme version' do
     before :all do
       system('gimme --version')
     end
@@ -12,7 +12,7 @@ describe 'gimme installation' do
     end
   end
 
-  describe 'gimme commands are executed' do
+  describe 'gimme commands' do
     describe command('gimme --list;') do
       its(:stdout) { should match '1.4.1 \<\= current' }
     end
