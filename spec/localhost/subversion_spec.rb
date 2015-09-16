@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'subversion installation' do
-
   describe 'subversion version' do
     before :all do
       system('svn --version | head -1')
@@ -17,5 +16,4 @@ describe 'subversion installation' do
       its(:stdout) { should match 'This is a Subversion repository;' }
     end
   end
-
 end

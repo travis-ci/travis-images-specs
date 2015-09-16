@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'md5deep installation' do
-
   describe 'md5deep version' do
     before :all do
       system('md5deep -v')
@@ -18,8 +17,7 @@ describe 'md5deep installation' do
     end
 
     describe command('md5deep ./spec/files/md5deep.txt') do
-      its(:stdout) { should match '29c04665afa6ef18edc38824ceaff6ab'}
+      its(:stdout) { should match '29c04665afa6ef18edc38824ceaff6ab' }
     end
   end
-
 end

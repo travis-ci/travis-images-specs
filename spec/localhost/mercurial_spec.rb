@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'mercurial installation' do
-
   describe 'mercurial version' do
     before :all do
       system('hg version | head -1')
@@ -25,9 +24,8 @@ describe 'mercurial installation' do
       its(:stdout) { should match 'A test-file.txt' }
     end
 
-     describe command('cd test-project; hg add .; hg forget test-file.txt; hg status') do
+    describe command('cd test-project; hg add .; hg forget test-file.txt; hg status') do
       its(:stdout) { should match '\? test-file.txt' }
     end
   end
-
 end

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'networking_basic installation' do
-
   describe 'lsof version' do
     before :all do
       system('lsof -v 2>&1 | head -2 | tail -1')
@@ -90,7 +89,6 @@ describe 'networking_basic installation' do
     end
   end
 
-
   describe 'libldap2-dev command' do
     describe command('dpkg -s libldap2-dev') do
       its(:stdout) { should match 'Status: install ok installed' }
@@ -106,5 +104,4 @@ describe 'networking_basic installation' do
       its(:exit_status) { should eq 0 }
     end
   end
-
 end

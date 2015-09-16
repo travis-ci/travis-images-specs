@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'rvm installation' do
-
   describe 'rvm version' do
     before :all do
       system('rvm version')
@@ -17,5 +16,4 @@ describe 'rvm installation' do
       its(:stdout) { should include('rvm rubies', 'current') }
     end
   end
-
 end

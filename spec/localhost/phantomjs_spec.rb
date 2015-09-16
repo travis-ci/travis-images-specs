@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'phantomjs installation' do
-
   describe 'phantomjs version' do
     before :all do
       system('phantomjs -v')
@@ -17,5 +16,4 @@ describe 'phantomjs installation' do
       its(:stdout) { should match 'Status: success' }
     end
   end
-
 end

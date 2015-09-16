@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'vim installation' do
-
   describe 'vim version' do
     before :all do
       system('vim --version | head -1')
@@ -23,5 +22,4 @@ describe 'vim installation' do
       end
     end
   end
-
 end

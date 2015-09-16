@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'firefox installation' do
-
   describe 'firefox version' do
     before :all do
       system('firefox -v')
@@ -21,5 +20,4 @@ describe 'firefox installation' do
       its(:stdout) { should match 'Name=test' }
     end
   end
-
 end

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'gimme installation' do
-
   describe 'gimme version' do
     before :all do
       system('gimme --version')
@@ -21,5 +20,4 @@ describe 'gimme installation' do
       its(:stdout) { should match 'go version go1.3 linux/amd64' }
     end
   end
-
 end

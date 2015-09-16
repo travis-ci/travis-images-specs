@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'python and pip installation ' do
-
   describe 'python version' do
     before :all do
       system('python --version')
@@ -27,10 +26,4 @@ describe 'python and pip installation ' do
       its(:stdout) { should match '246' }
     end
   end
-
 end
-
-
-
-
-

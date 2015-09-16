@@ -28,9 +28,8 @@ describe 'git installation' do
       its(:stdout) { should include('Changes to be committed:', 'new file:   test-file.txt') }
     end
 
-     describe command('cd git-project; git add test-file.txt; git rm -f test-file.txt; git status') do
+    describe command('cd git-project; git add test-file.txt; git rm -f test-file.txt; git status') do
       its(:stdout) { should match 'nothing to commit' }
     end
   end
-
 end

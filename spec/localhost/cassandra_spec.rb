@@ -1,13 +1,11 @@
 require 'spec_helper'
 
 describe 'cassandra installation' do
-
   describe command('which cassandra') do
-    its(:stdout) { should match '/local/bin/cassandra'}
+    its(:stdout) { should match '/local/bin/cassandra' }
   end
 
   describe 'cassandra commands', sudo: true do
-
     before :all do
       system('sudo /etc/init.d/cassandra start')
       system('sleep 10')
@@ -22,7 +20,7 @@ describe 'cassandra installation' do
     end
 
     describe command ('cassandra-cli -host localhost -port 9160 -f ./spec/files/cassandra_schema.txt') do
-      its(:stdout) { should include( 'Value inserted', 'Returned 3 results', 'name=age', 'value=45', 'name=first', 'value=Allen', 'name=last', 'value=Dakota' ) }
+      its(:stdout) { should include('Value inserted', 'Returned 3 results', 'name=age', 'value=45', 'name=first', 'value=Allen', 'name=last', 'value=Dakota') }
     end
   end
 end

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'openssl installation' do
-
   describe 'openssl version' do
     before :all do
       system('openssl version')
@@ -21,6 +20,4 @@ describe 'openssl installation' do
       its(:stdout) { should match 'Konstantin broke all the things.' }
     end
   end
-
 end
-

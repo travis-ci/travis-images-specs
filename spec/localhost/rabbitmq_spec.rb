@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'rabbitmq installation' do
-
   describe package('rabbitmq-server') do
     it { should be_installed }
   end
@@ -27,27 +26,26 @@ describe 'rabbitmq installation' do
     end
 
     describe command ('sudo rabbitmqctl status') do
-      its(:stdout) { should include('Status of node rabbit@localhost','running_applications') }
+      its(:stdout) { should include('Status of node rabbit@localhost', 'running_applications') }
     end
   end
 
   describe 'rabbitmqadmin commands' do
     before :all do
-      system('./bin/rabbitmqadmin declare queue name=my-test-queue durable=false')
-      system('./bin/rabbitmqadmin publish exchange=amq.default routing_key=my-test-queue payload="hello, world" ')
+      system('./spec/bin/rabbitmqadmin declare queue name=my-test-queue durable=false')
+      system('./spec/bin/rabbitmqadmin publish exchange=amq.default routing_key=my-test-queue payload="hello, world" ')
     end
 
-    describe command ('sleep 2; ./bin/rabbitmqadmin list queues') do
+    describe command ('sleep 2; ./spec/bin/rabbitmqadmin list queues') do
       its(:stdout) { should include('my-test-queue', '1') }
     end
 
-    describe command ('./bin/rabbitmqadmin get queue=my-test-queue requeue=false') do
+    describe command ('./spec/bin/rabbitmqadmin get queue=my-test-queue requeue=false') do
       its(:stdout) { should include('my-test-queue', 'hello, world') }
     end
 
-    describe command ('sleep 2; ./bin/rabbitmqadmin list queues') do
+    describe command ('sleep 2; ./spec/bin/rabbitmqadmin list queues') do
       its(:stdout) { should include('my-test-queue', '0') }
     end
   end
-
 end

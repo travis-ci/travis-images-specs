@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'ccache installation' do
-
   describe 'ccache version' do
     before :all do
       system('ccache -V')
@@ -21,5 +20,4 @@ describe 'ccache installation' do
       its(:stdout) { should match 'Set cache size limit to 512.0 Mbytes' }
     end
   end
-
 end

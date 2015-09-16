@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'ant installation' do
-
   describe 'ant version' do
     before :all do
       system('ant -version')
@@ -21,5 +20,4 @@ describe 'ant installation' do
       its(:stdout) { should match 'Buildfile: build.xml does not exist!\nBuild failed' }
     end
   end
-
 end

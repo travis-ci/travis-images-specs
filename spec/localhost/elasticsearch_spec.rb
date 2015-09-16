@@ -1,13 +1,11 @@
 require 'spec_helper'
 
 describe 'elasticsearch installation' do
-
   describe package('elasticsearch') do
     it { should be_installed }
   end
 
   describe 'elasticsearch start', sudo: true do
-
     before :all do
       system('sudo service elasticsearch start')
       system('sleep 5')
@@ -25,7 +23,5 @@ describe 'elasticsearch installation' do
     describe command ('curl -XGET \'http://localhost:9200/twitter/tweet/_search?q=message:Trying&pretty=true\'') do
       its(:stdout) { should include('"total" : 1', '"user": "kimchy"', '"message": "Trying out Elasticsearch"') }
     end
-
   end
-
 end

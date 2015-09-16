@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'redis installation' do
-
   describe 'redis version' do
     before :all do
       system('redis-server --version')
@@ -25,5 +24,4 @@ describe 'redis installation' do
       its(:stdout) { should match 'test_key' }
     end
   end
-
 end

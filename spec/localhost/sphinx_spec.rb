@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'sphinx installation' do
-
   describe 'sphinx version' do
     before :all do
       system('searchd | grep Sphinx | head -1')
@@ -25,5 +24,4 @@ describe 'sphinx installation' do
       its(:stdout) { should match 'Sphinx 2.0.10-release' }
     end
   end
-
 end
