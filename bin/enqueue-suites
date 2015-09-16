@@ -19,19 +19,21 @@ class SuiteEnqueuer
 
     configure
 
-    build_configs.each do |config|
-      languages.each do |lang|
-        config = config.merge(
-          language: lang,
-          script: 'bin/run-suite'
-        )
+    languages.map(&:strip).compact.each do |lang|
+      next if lang.empty?
 
-        puts "Enqueueing suite for config=#{config.inspect}"
+      config = {
+        language: lang,
+        matrix: { include: build_configs },
+        install: 'bundle install --jobs=3 --retry=3',
+        script: 'bin/run-suite'
+      }
 
-        response = enqueue(config)
+      puts "Enqueueing suite for config=#{config.inspect}"
 
-        puts response.body
-      end
+      response = enqueue(config)
+
+      puts response.body
     end
 
     0
@@ -39,8 +41,8 @@ class SuiteEnqueuer
 
   private
 
-  attr_reader :argv, :token, :languages, :travis_api, :owner, :repo
-  attr_reader :now, :whom, :skip_infra
+  attr_reader :argv, :token, :languages, :travis_api, :owner, :spec_branch
+  attr_reader :repo, :now, :whom, :skip_infra
 
   def load_reqs
     require 'etc'
@@ -74,7 +76,7 @@ class SuiteEnqueuer
       c << { sudo: 'required' } unless skip_infra.include?('linux')
       c << {
         sudo: 'required',
-        services: %w(docker),
+        services: 'docker',
         group: 'edge'
       } unless skip_infra.include?('gce')
     end
@@ -88,7 +90,7 @@ class SuiteEnqueuer
     ).join(' ')
 
     conn.post do |req|
-      req.url = "/repo/#{owner}%2F#{repo}/requests"
+      req.url "/repo/#{owner}%2F#{repo}/requests"
       req.headers['Content-Type'] = 'application/json'
       req.headers['Travis-API-Version'] = '3'
       req.headers['Authorization'] = "token #{token}"
@@ -102,7 +104,7 @@ class SuiteEnqueuer
             name: repo
           }
         }
-      }
+      }.to_json
     end
   end
 end
