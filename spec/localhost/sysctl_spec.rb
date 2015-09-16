@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'sysctl installation' do
-
   describe 'sysctl version' do
     before :all do
       system('sysctl -V | head -1')
@@ -17,5 +16,4 @@ describe 'sysctl installation' do
       its(:stdout) { should include('kernel.sched_child_runs_first') }
     end
   end
-
 end

@@ -1,9 +1,7 @@
 require 'spec_helper'
 
 describe 'unarchivers installation' do
-
   describe 'unarchivers versions' do
-
     describe 'gzip version' do
       before :all do
         system('gzip --version 2>&1 | head -1')
@@ -42,13 +40,10 @@ describe 'unarchivers installation' do
       describe command('unzip -version') do
         its(:exit_status) { should eq 0 }
       end
-
     end
-
   end
 
   describe 'unarchivers commands' do
-
     describe command('dpkg -s libbz2-dev') do
       its(:stdout) { should match 'Status: install ok installed' }
     end
@@ -76,7 +71,5 @@ describe 'unarchivers installation' do
     describe command('unzip ./spec/files/unarchivers2.txt.zip; sleep 2; cat unarchivers2.txt') do
       its(:stdout) { should match 'Konstantin broke all the things' }
     end
-
   end
-
 end

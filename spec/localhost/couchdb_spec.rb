@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'couchdb installation' do
-
   describe package('couchdb') do
     it { should be_installed }
   end
@@ -33,8 +32,7 @@ describe 'couchdb installation' do
     end
 
     describe command ('curl -X GET http://127.0.0.1:5984/baseball/bat') do
-      its(:stdout) { should include("_id", "bat", "Name", "Testname" ) }
+      its(:stdout) { should include('_id', 'bat', 'Name', 'Testname') }
     end
   end
-
 end

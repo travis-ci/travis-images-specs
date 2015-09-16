@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'riak installation' do
-
   describe package('riak') do
     it { should be_installed }
   end
@@ -30,5 +29,4 @@ describe 'riak installation' do
       its(:stdout) { should match 'completed 1 read/write cycle' }
     end
   end
-
 end

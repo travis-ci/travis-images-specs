@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'clang installation' do
-
   describe 'clang version' do
     before :all do
       system('clang -v | head -1')
@@ -14,8 +13,7 @@ describe 'clang installation' do
 
   describe 'clang command' do
     describe command('clang -help; sleep 5') do
-      its(:stdout) { should include('OVERVIEW: clang LLVM compiler','OPTIONS:') }
+      its(:stdout) { should include('OVERVIEW: clang LLVM compiler', 'OPTIONS:') }
     end
   end
-
 end

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'scons installation' do
-
   describe 'scons version' do
     before :all do
       system('scons -v | grep --color=never script')
@@ -14,20 +13,24 @@ describe 'scons installation' do
 
   describe 'scons commands' do
     describe command('scons -C ./spec/files; sleep 5') do
-      its(:stdout) { should include('scons: Reading SConscript files',
-                                    'scons: Building targets',
-                                    'gcc -o helloworld.o -c helloworld.c',
-                                    'gcc -o helloworld helloworld.o',
-                                    'scons: done building targets.') }
+      its(:stdout) do
+        should include('scons: Reading SConscript files',
+                       'scons: Building targets',
+                       'gcc -o helloworld.o -c helloworld.c',
+                       'gcc -o helloworld helloworld.o',
+                       'scons: done building targets.')
+      end
     end
 
     describe command('cd ./spec/files; scons --tree=all; sleep 5') do
-      its(:stdout) { should include('+-SConstruct',
-                                    '+-helloworld',
-                                    '+-helloworld.o',
-                                    '+-helloworld.c',
-                                    '+-/usr/bin/gcc',
-                                    'scons: done building targets.') }
+      its(:stdout) do
+        should include('+-SConstruct',
+                       '+-helloworld',
+                       '+-helloworld.o',
+                       '+-helloworld.c',
+                       '+-/usr/bin/gcc',
+                       'scons: done building targets.')
+      end
     end
   end
 end

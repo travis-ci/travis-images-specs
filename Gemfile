@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'excon'
+gem 'faraday'
 gem 'rake'
-
-group :test do
-  gem 'rspec', '~> 3.2.0'
-  gem 'serverspec'
-end
+gem 'rspec'
+gem 'rubocop'
+gem 'serverspec'

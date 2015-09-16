@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'emacs installation' do
-
   describe 'emacs version' do
     before :all do
       system('emacs --version | head -1')
@@ -21,5 +20,4 @@ describe 'emacs installation' do
       its(:stdout) { should match 'Butterblume' }
     end
   end
-
 end

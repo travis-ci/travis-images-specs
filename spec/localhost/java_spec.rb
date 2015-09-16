@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'java installation' do
-
   describe 'java version' do
     before :all do
       system('java -version | head -1')
@@ -21,5 +20,4 @@ describe 'java installation' do
       its(:stdout) { should match 'Hello' }
     end
   end
-
 end

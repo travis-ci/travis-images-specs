@@ -1,0 +1,110 @@
+#!/usr/bin/env ruby
+
+class SuiteEnqueuer
+  def self.run(argv: ARGV)
+    new(argv: argv).run
+  end
+
+  def initialize(argv: ARGV)
+    @argv = argv
+  end
+
+  def run
+    load_reqs
+
+    unless ENV['TRAVIS_TOKEN']
+      puts 'Env var TRAVIS_TOKEN not set'
+      return 1
+    end
+
+    configure
+
+    build_configs.each do |config|
+      languages.each do |lang|
+        config = config.merge(
+          language: lang,
+          script: 'bin/run-suite'
+        )
+
+        puts "Enqueueing suite for config=#{config.inspect}"
+
+        response = enqueue(config)
+
+        puts response.body
+      end
+    end
+
+    0
+  end
+
+  private
+
+  attr_reader :argv, :token, :languages, :travis_api, :owner, :repo
+  attr_reader :now, :whom, :skip_infra
+
+  def load_reqs
+    require 'etc'
+    require 'excon'
+    require 'faraday'
+    require 'json'
+  end
+
+  def configure
+    @token = ENV.fetch('TRAVIS_TOKEN')
+    @languages = (%W(#{ENV['LANGUAGE_SUITES']}) + argv).compact
+    @travis_api = ENV['TRAVIS_API_ENDPOINT'] || 'https://api.travis-ci.org'
+    @owner = ENV['OWNER'] || 'travis-ci'
+    @spec_branch = ENV['SPEC_BRANCH'] || 'specs'
+    @repo = ENV['REPO'] || 'travis-images-specs'
+    @now = Time.now.utc
+    @whom = ENV['USER'] || Etc.getpwuid(Process.euid).name
+    @skip_infra = %W(#{ENV['SKIP_INFRA']})
+  end
+
+  def conn
+    @conn ||= Faraday.new(url: travis_api) do |faraday|
+      faraday.response :logger
+      faraday.adapter :excon
+    end
+  end
+
+  def build_configs
+    @build_configs ||= [].tap do |c|
+      c << { sudo: false } unless skip_infra.include?('docker')
+      c << { sudo: 'required' } unless skip_infra.include?('linux')
+      c << {
+        sudo: 'required',
+        services: %w(docker),
+        group: 'edge'
+      } unless skip_infra.include?('gce')
+    end
+  end
+
+  def enqueue(config)
+    message = %W(
+      lang=#{config[:language].inspect}
+      date=#{now.to_s.inspect}
+      whom=#{whom.inspect}
+    ).join(' ')
+
+    conn.post do |req|
+      req.url = "/repo/#{owner}%2F#{repo}/requests"
+      req.headers['Content-Type'] = 'application/json'
+      req.headers['Travis-API-Version'] = '3'
+      req.headers['Authorization'] = "token #{token}"
+      req.body = {
+        request: {
+          config: config,
+          message: message,
+          repository: {
+            owner_name: owner,
+            branch: spec_branch,
+            name: repo
+          }
+        }
+      }
+    end
+  end
+end
+
+exit(SuiteEnqueuer.run(argv: ARGV)) if $PROGRAM_NAME == __FILE__

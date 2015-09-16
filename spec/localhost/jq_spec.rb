@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'jq installation' do
-
   describe 'jq version' do
     before :all do
       system('jq -V')
@@ -17,5 +16,4 @@ describe 'jq installation' do
       its(:stdout) { should match '{\n  \"message\": \"Konstantin broke all the things.\",\n  \"name\": \"Tyranja\"\n}\n' }
     end
   end
-
 end

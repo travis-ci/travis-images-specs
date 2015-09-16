@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'imagemagick installation' do
-
   describe 'imagemagick version' do
     before :all do
       system('convert --version | head -1')
@@ -21,5 +20,4 @@ describe 'imagemagick installation' do
       its(:exit_status) { should eq 0 }
     end
   end
-
 end

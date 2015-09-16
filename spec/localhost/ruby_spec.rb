@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'ruby installation' do
-
   describe 'ruby version' do
     before :all do
       system('ruby -v')
@@ -17,5 +16,4 @@ describe 'ruby installation' do
       its(:stdout) { should match 'Konstanin broke all the things' }
     end
   end
-
 end

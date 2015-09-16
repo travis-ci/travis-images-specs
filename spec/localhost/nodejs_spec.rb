@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'nodejs installation' do
-
   describe 'nodejs version' do
     before :all do
       system('node -v')
@@ -14,8 +13,7 @@ describe 'nodejs installation' do
 
   describe 'node commands' do
     describe command('node -e "console.log(\'Konstantin broke all the thingz\')"') do
-      its(:stdout) { should match 'Konstantin broke all the thingz'}
+      its(:stdout) { should match 'Konstantin broke all the thingz' }
     end
   end
-
 end

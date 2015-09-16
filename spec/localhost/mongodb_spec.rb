@@ -1,13 +1,12 @@
 require 'spec_helper'
 
 describe 'mongodb installation' do
-
   describe 'mongodb version' do
     before :all do
       system('mongo --version')
     end
 
-    describe command ('mongo --version')  do
+    describe command ('mongo --version') do
       its(:exit_status) { should eq 0 }
     end
   end
@@ -22,13 +21,12 @@ describe 'mongodb installation' do
       its(:stdout) { should match '[initandlisten] waiting for connections on port' }
     end
 
-    describe command ('mongo --eval "db.testData.insert( { x : 6 } ); db.getCollectionNames()"')  do
+    describe command ('mongo --eval "db.testData.insert( { x : 6 } ); db.getCollectionNames()"') do
       its(:stdout) { should match 'testData' }
     end
 
-    describe command ('mongo --eval "var myCursor = db.testData.find( { x: 6 }); myCursor.forEach(printjson);"')  do
+    describe command ('mongo --eval "var myCursor = db.testData.find( { x: 6 }); myCursor.forEach(printjson);"') do
       its(:stdout) { should match '{ "_id" : ObjectId\("[\w]+"\), "x" : 6 }' }
     end
   end
-
 end

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'ragel installation' do
-
   describe package('ragel') do
     it { should be_installed }
   end
@@ -28,6 +27,4 @@ describe 'ragel installation' do
       end
     end
   end
-
 end
-

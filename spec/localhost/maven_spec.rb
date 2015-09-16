@@ -16,5 +16,4 @@ describe 'maven installation' do
       its(:stdout) { should match 'Name: Maven Help Plugin' }
     end
   end
-
 end

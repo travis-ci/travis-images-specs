@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'bazaar installation' do
-
   describe 'bazaar version' do
     before :all do
       system('bzr version | head -1')
@@ -25,9 +24,8 @@ describe 'bazaar installation' do
       its(:stdout) { should match 'adding test-file.rb' }
     end
 
-     describe command('cd bzr-project; bzr status') do
+    describe command('cd bzr-project; bzr status') do
       its(:stdout) { should include('added:', 'test-file.rb') }
     end
   end
-
 end
