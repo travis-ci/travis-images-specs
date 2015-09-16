@@ -22,6 +22,9 @@ to the Travis API.
 
 ## Usage
 
+There are both a web application and script available for enqueueing spec
+suites, available at `./app.rb` and `./bin/enqueue-suites` respectively.
+
 Running the script by passing languages as options will send seperate build
 requests for ruby, python, and php., e.g.:
 
