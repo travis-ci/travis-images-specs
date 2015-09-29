@@ -8,7 +8,7 @@ sh -e /etc/init.d/xvfb start
 : ${RSPEC_TAGS:=}
 : ${RSPEC_OPTS:=}
 
-if ! sudo -n true ; then
+if ! sudo -n true 2>/dev/null ; then
   RSPEC_TAGS="${RSPEC_TAGS} ~sudo"
 fi
 

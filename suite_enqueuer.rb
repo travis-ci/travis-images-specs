@@ -28,9 +28,10 @@ class SuiteEnqueuer
 
       config = {
         language: lang,
+        env: "RSPEC_TAGS=#{tags.join(',')}",
         matrix: { include: build_configs(lang) },
         install: 'bundle install --jobs=3 --retry=3',
-        script: "bin/run-suite #{tags.join(' ')}"
+        script: "bin/run-suite"
       }
 
       puts "Enqueueing suite for config=#{config.inspect}"
@@ -83,17 +84,19 @@ class SuiteEnqueuer
     [].tap do |c|
       c << {
         sudo: false,
-        env: 'RSPEC_TAGS=standard'
+        env: "RSPEC_TAGS=standard,#{tags.join(',')}"
       } unless skip_infra.include?('docker')
       c << {
         sudo: 'required',
-        env: 'RSPEC_TAGS=standard'
+        env: "RSPEC_TAGS=standard,#{tags.join(',')}"
       } unless skip_infra.include?('linux')
+
+      gce_tag = lang == 'generic' ? 'minimal' : 'mega'
       c << {
         sudo: 'required',
         services: 'docker',
         group: 'edge',
-        env: 'RSPEC_TAGS=' + (lang == 'generic' ? 'minimal' : 'mega')
+        env: "RSPEC_TAGS=#{gce_tag},#{tags.join(',')}"
       } unless skip_infra.include?('gce')
     end
   end
