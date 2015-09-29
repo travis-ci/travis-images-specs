@@ -23,7 +23,7 @@ Lint/ParenthesesAsGroupedExpression:
 
 # Offense count: 2
 Metrics/AbcSize:
-  Max: 34
+  Max: 40
 
 # Offense count: 1
 # Configuration parameters: CountComments.

@@ -65,7 +65,7 @@ class SuiteEnqueuer
     @repo = env['REPO'] || 'travis-images-specs'
     @now = Time.now.utc
     @whom = requested_by || env['USER'] || Etc.getpwuid(Process.euid).name
-    @skip_infra = %W(#{env['SKIP_INFRA']})
+    @skip_infra = %W(#{env['SKIP_INFRA']}).map { |t| t.split(',') }.flatten.compact
   end
 
   def conn
