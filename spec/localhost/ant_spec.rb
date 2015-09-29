@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'ant installation' do
+describe 'ant installation', mega: true, standard: true do
   describe 'ant version' do
     before :all do
       system('ant -version')

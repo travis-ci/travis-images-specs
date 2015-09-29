@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'imagemagick installation' do
+describe 'imagemagick installation', mega: true, standard: true, minimal: true do
   describe 'imagemagick version' do
     before :all do
       system('convert --version | head -1')

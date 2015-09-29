@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'maven installation' do
+describe 'maven installation', mega: true, standard: true do
   describe 'maven version' do
     before :all do
       system('mvn -version | head -1')

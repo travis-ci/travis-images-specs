@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'neo4j installation' do
+describe 'neo4j installation', standard: true do
   describe command('which neo4j') do
     its(:stdout) { should match '/local/bin/neo4j' }
   end

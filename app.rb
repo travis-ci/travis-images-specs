@@ -8,6 +8,10 @@ class App < Sinatra::Base
     def auth_tokens
       @auth_tokens ||= (ENV['AUTH_TOKENS'] || '').split(':').map(&:strip)
     end
+
+    def base_env
+      @base_env ||= Hash[ENV]
+    end
   end
 
   unless development? || test?
@@ -29,6 +33,13 @@ class App < Sinatra::Base
 
     results = SuiteEnqueuer.new(
       argv: params['languages'],
+      env: App.base_env.merge(
+        'OWNER' => params['owner'] || 'travis-ci',
+        'REPO' => params['repo'] || 'travis-images-specs',
+        'SPEC_BRANCH' => params['spec_branch'] || 'specs',
+        'SKIP_INFRA' => params['skip_infra'] || '',
+        'RSPEC_TAGS' => params['tags'] || ''
+      ),
       requested_by: env['REMOTE_USER'] || 'gnomes'
     ).run
 

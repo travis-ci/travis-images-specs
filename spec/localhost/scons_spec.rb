@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'scons installation' do
+describe 'scons installation', mega: true, standard: true do
   describe 'scons version' do
     before :all do
       system('scons -v | grep --color=never script')

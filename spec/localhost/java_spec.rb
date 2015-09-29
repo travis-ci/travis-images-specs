@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'java installation' do
+describe 'java installation', mega: true, standard: true do
   describe 'java version' do
     before :all do
       system('java -version | head -1')

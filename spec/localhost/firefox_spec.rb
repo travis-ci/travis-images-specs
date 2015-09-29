@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'firefox installation' do
+describe 'firefox installation', mega: true, standard: true do
   describe 'firefox version' do
     before :all do
       system('firefox -v')

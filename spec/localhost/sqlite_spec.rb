@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'sqlite installation' do
+describe 'sqlite installation', mega: true, standard: true, minimal: true do
   describe 'sqlite version' do
     before :all do
       system('sqlite3 -version')

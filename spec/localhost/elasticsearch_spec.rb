@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'elasticsearch installation' do
+describe 'elasticsearch installation', mega: true, standard: true do
   describe package('elasticsearch') do
     it { should be_installed }
   end

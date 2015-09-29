@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'vim installation' do
+describe 'vim installation', mega: true, standard: true, minimal: true do
   describe 'vim version' do
     before :all do
       system('vim --version | head -1')

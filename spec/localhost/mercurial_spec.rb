@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'mercurial installation' do
+describe 'mercurial installation', mega: true, standard: true, minimal: true do
   describe 'mercurial version' do
     before :all do
       system('hg version | head -1')

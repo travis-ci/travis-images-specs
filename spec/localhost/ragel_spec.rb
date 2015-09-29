@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'ragel installation' do
+describe 'ragel installation', mega: true, standard: true, minimal: true do
   describe package('ragel') do
     it { should be_installed }
   end

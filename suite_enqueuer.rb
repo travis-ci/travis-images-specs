@@ -28,9 +28,9 @@ class SuiteEnqueuer
 
       config = {
         language: lang,
-        matrix: { include: build_configs },
+        matrix: { include: build_configs(lang) },
         install: 'bundle install --jobs=3 --retry=3',
-        script: 'bin/run-suite'
+        script: "bin/run-suite #{tags.join(' ')}"
       }
 
       puts "Enqueueing suite for config=#{config.inspect}"
@@ -45,7 +45,7 @@ class SuiteEnqueuer
 
   private
 
-  attr_reader :env, :argv, :token, :languages, :travis_api, :owner
+  attr_reader :env, :argv, :token, :languages, :travis_api, :owner, :tags
   attr_reader :requested_by, :spec_branch, :repo, :now, :whom, :skip_infra
 
   def load_reqs
@@ -57,14 +57,15 @@ class SuiteEnqueuer
 
   def configure
     @token = env.fetch('TRAVIS_TOKEN')
-    @languages = (%W(#{env['LANGUAGE_SUITES']}) + argv).compact
+    @tags = env_array('RSPEC_TAGS')
+    @languages = (env_array('LANGUAGE_SUITES') + argv).compact
     @travis_api = env['TRAVIS_API_ENDPOINT'] || 'https://api.travis-ci.org'
     @owner = env['OWNER'] || 'travis-ci'
     @spec_branch = env['SPEC_BRANCH'] || 'specs'
     @repo = env['REPO'] || 'travis-images-specs'
     @now = Time.now.utc
     @whom = requested_by || env['USER'] || Etc.getpwuid(Process.euid).name
-    @skip_infra = %W(#{env['SKIP_INFRA']})
+    @skip_infra = env_array('SKIP_INFRA')
   end
 
   def conn
@@ -74,14 +75,37 @@ class SuiteEnqueuer
     end
   end
 
-  def build_configs
-    @build_configs ||= [].tap do |c|
-      c << { sudo: false } unless skip_infra.include?('docker')
-      c << { sudo: 'required' } unless skip_infra.include?('linux')
+  def env_array(key)
+    %W(#{env[key]}).map { |t| t.split(',') }.flatten.compact
+  end
+
+  def build_configs(lang)
+    [].tap do |c|
+      c << {
+        sudo: false,
+        env: {
+          global: [
+            'RSPEC_TAGS=standard'
+          ]
+        }
+      } unless skip_infra.include?('docker')
+      c << {
+        sudo: 'required',
+        env: {
+          global: [
+            'RSPEC_TAGS=standard'
+          ]
+        }
+      } unless skip_infra.include?('linux')
       c << {
         sudo: 'required',
         services: 'docker',
-        group: 'edge'
+        group: 'edge',
+        env: {
+          global: [
+            'RSPEC_TAGS=' + (lang == 'generic' ? 'minimal' : 'mega')
+          ]
+        }
       } unless skip_infra.include?('gce')
     end
   end

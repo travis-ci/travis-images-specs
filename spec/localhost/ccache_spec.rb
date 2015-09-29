@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'ccache installation' do
+describe 'ccache installation', mega: true, standard: true, minimal: true do
   describe 'ccache version' do
     before :all do
       system('ccache -V')

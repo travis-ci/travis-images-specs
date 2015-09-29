@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'networking_basic installation' do
+describe 'networking_basic installation', mega: true, standard: true do
   describe 'lsof version' do
     before :all do
       system('lsof -v 2>&1 | head -2 | tail -1')

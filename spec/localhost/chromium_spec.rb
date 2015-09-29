@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'chromium installation' do
+describe 'chromium installation', mega: true, standard: true do
   describe package('chromium-browser') do
     it { should be_installed }
   end

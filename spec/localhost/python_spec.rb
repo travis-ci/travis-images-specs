@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'python and pip installation ' do
+describe 'python and pip installation', mega: true, standard: true, minimal: true do
   describe 'python version' do
     before :all do
       system('python --version')

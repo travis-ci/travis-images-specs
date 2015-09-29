@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'sysctl installation' do
+describe 'sysctl installation', mega: true, standard: true, minimal: true do
   describe 'sysctl version' do
     before :all do
       system('sysctl -V | head -1')

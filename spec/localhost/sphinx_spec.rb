@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'sphinx installation' do
+describe 'sphinx installation', mega: true, standard: true do
   describe 'sphinx version' do
     before :all do
       system('searchd | grep Sphinx | head -1')
