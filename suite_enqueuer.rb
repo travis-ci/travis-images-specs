@@ -31,7 +31,7 @@ class SuiteEnqueuer
         env: "RSPEC_TAGS=#{tags.join(',')}",
         matrix: { include: build_configs(lang) },
         install: 'bundle install --jobs=3 --retry=3',
-        script: "bin/run-suite"
+        script: 'bin/run-suite'
       }
 
       puts "Enqueueing suite for config=#{config.inspect}"
@@ -80,15 +80,19 @@ class SuiteEnqueuer
     %W(#{env[key]}).map { |t| t.split(',') }.flatten.compact
   end
 
+  def array_comma_join(arr)
+    arr.flatten.compact.join(',').sub(/,$/, '')
+  end
+
   def build_configs(lang)
     [].tap do |c|
       c << {
         sudo: false,
-        env: "RSPEC_TAGS=standard,#{tags.join(',')}"
+        env: "RSPEC_TAGS=#{array_comma_join(tags + %w(standard))}"
       } unless skip_infra.include?('docker')
       c << {
         sudo: 'required',
-        env: "RSPEC_TAGS=standard,#{tags.join(',')}"
+        env: "RSPEC_TAGS=#{array_comma_join(tags + %w(standard))}"
       } unless skip_infra.include?('linux')
 
       gce_tag = lang == 'generic' ? 'minimal' : 'mega'
@@ -96,7 +100,7 @@ class SuiteEnqueuer
         sudo: 'required',
         services: 'docker',
         group: 'edge',
-        env: "RSPEC_TAGS=#{gce_tag},#{tags.join(',')}"
+        env: "RSPEC_TAGS=#{array_comma_join(tags + [gce_tag])}"
       } unless skip_infra.include?('gce')
     end
   end
