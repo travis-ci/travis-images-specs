@@ -30,13 +30,14 @@ namespace :spec do
     targets << File.basename(dir)
   end
 
-  task all: targets
+  task all: %w(spec/bin/rabbitmqadmin) + targets
   task default: :all
 
   targets.each do |target|
     desc "Run serverspec tests to #{target}"
     RSpec::Core::RakeTask.new(target.to_sym) do |t|
       ENV['TARGET_HOST'] = target
+      t.rspec_opts = (ENV['RSPEC_OPTS'] || '')
       t.pattern = "spec/#{target}/*_spec.rb"
     end
   end
