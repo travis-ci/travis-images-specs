@@ -3,7 +3,7 @@ set -o errexit
 
 export DISPLAY=:99.0
 
-sh -e /etc/init.d/xvfb start
+sh -e /etc/init.d/xvfb start || echo "ignoring exit $? from xvfb"
 
 : ${RSPEC_TAGS:=}
 : ${RSPEC_OPTS:=}
