@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'redis installation' do
+describe 'redis installation', mega: true, standard: true do
   describe 'redis version' do
     before :all do
       system('redis-server --version')

@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'mongodb installation' do
+describe 'mongodb installation', standard: true do
   describe 'mongodb version' do
     before :all do
       system('mongo --version')

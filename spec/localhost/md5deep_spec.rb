@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'md5deep installation' do
+describe 'md5deep installation', mega: true, standard: true, minimal: true do
   describe 'md5deep version' do
     before :all do
       system('md5deep -v')

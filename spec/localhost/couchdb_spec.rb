@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'couchdb installation' do
+describe 'couchdb installation', standard: true do
   describe package('couchdb') do
     it { should be_installed }
   end

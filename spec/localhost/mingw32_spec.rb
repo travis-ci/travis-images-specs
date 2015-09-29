@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'minGW' do
+describe 'mingw', mega: true, standard: true, minimal: true do
   describe 'gcc version' do
     before :all do
       system('gcc -v 2>&1 | tail -1')

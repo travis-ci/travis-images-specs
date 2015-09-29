@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'clang installation' do
+describe 'clang installation', mega: true, standard: true, minimal: true do
   describe 'clang version' do
     before :all do
       system('clang -v | head -1')

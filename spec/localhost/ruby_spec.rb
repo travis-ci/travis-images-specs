@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'ruby installation' do
+describe 'ruby installation', mega: true, standard: true, minimal: true do
   describe 'ruby version' do
     before :all do
       system('ruby -v')

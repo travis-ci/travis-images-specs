@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'memcached installation' do
+describe 'memcached installation', mega: true, standard: true do
   describe package('memcached') do
     it { should be_installed }
   end

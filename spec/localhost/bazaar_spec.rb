@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'bazaar installation' do
+describe 'bazaar installation', mega: true, standard: true do
   describe 'bazaar version' do
     before :all do
       system('bzr version | head -1')

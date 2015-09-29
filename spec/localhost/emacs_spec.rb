@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'emacs installation' do
+describe 'emacs installation', mega: true, standard: true do
   describe 'emacs version' do
     before :all do
       system('emacs --version | head -1')

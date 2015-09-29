@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'rabbitmq installation' do
+describe 'rabbitmq installation', mega: true, standard: true do
   describe package('rabbitmq-server') do
     it { should be_installed }
   end

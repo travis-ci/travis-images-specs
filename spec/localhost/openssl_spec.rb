@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'openssl installation' do
+describe 'openssl installation', mega: true, standard: true, minimal: true do
   describe 'openssl version' do
     before :all do
       system('openssl version')

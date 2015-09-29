@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'postgres installation' do
+describe 'postgres installation', mega: true, standard: true, minimal: true do
   describe 'postgres version' do
     before :all do
       system('psql --version')

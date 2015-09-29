@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'xserver installation' do
+describe 'xserver installation', mega: true, standard: true, minimal: true do
   describe 'xserver version' do
     before :all do
       system('Xorg -version 2>&1 | grep --color=never X.Org')

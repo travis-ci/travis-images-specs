@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
 export DISPLAY=:99.0
 sh -e /etc/init.d/xvfb start
-exec bundle exec rspec $(sudo -n true || echo "--tag ~sudo") ./spec
+
+: ${RSPEC_TAGS:=}
+
+if ! sudo -n true ; then
+  RSPEC_TAGS="${RSPEC_TAGS} --tag ~sudo"
+fi
+
+exec bundle exec ${RSPEC_TAGS} ./spec

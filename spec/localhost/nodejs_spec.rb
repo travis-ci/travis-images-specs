@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'nodejs installation' do
+describe 'nodejs installation', mega: true, standard: true, minimal: true do
   describe 'nodejs version' do
     before :all do
       system('node -v')

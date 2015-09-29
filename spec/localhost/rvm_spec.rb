@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'rvm installation' do
+describe 'rvm installation', mega: true, standard: true, minimal: true do
   describe 'rvm version' do
     before :all do
       system('rvm version')

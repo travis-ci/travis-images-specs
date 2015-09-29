@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'apt installation ' do
+describe 'apt installation', mega: true, standard: true, minimal: true do
   describe 'apt version' do
     before :all do
       system('apt-get -v | head -1')

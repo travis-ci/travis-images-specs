@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'unarchivers installation' do
+describe 'unarchivers installation', mega: true, standard: true, minimal: true do
   describe 'unarchivers versions' do
     describe 'gzip version' do
       before :all do

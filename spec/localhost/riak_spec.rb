@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'riak installation' do
+describe 'riak installation', standard: true do
   describe package('riak') do
     it { should be_installed }
   end

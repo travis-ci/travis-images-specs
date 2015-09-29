@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'jq installation' do
+describe 'jq installation', mega: true, standard: true, minimal: true do
   describe 'jq version' do
     before :all do
       system('jq -V')

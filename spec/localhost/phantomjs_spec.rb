@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'phantomjs installation' do
+describe 'phantomjs installation', mega: true, stardard: true do
   describe 'phantomjs version' do
     before :all do
       system('phantomjs -v')

@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'gimme installation' do
+describe 'gimme installation', mega: true, standard: true, minimal: true do
   describe 'gimme version' do
     before :all do
       system('gimme --version')

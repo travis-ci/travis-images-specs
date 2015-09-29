@@ -1,6 +1,4 @@
-require 'spec_helper'
-
-describe 'cassandra installation' do
+describe 'cassandra installation', standard: true do
   describe command('which cassandra') do
     its(:stdout) { should match '/local/bin/cassandra' }
   end
