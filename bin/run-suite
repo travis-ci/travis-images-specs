@@ -12,4 +12,4 @@ for arg in "$@" ; do
   RSPEC_TAGS="${RSPEC_TAGS} --tag ${arg}"
 done
 
-exec bundle exec ${RSPEC_TAGS} ./spec
+exec bundle exec rspec ${RSPEC_TAGS} ./spec
