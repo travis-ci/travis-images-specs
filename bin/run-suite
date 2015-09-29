@@ -1,15 +1,22 @@
 #!/usr/bin/env bash
+set -o errexit
+
 export DISPLAY=:99.0
+
 sh -e /etc/init.d/xvfb start
 
 : ${RSPEC_TAGS:=}
+: ${RSPEC_OPTS:=}
 
-if ! sudo -n true ; then
-  RSPEC_TAGS="${RSPEC_TAGS} --tag ~sudo"
+if ! sudo -n true 2>/dev/null ; then
+  RSPEC_TAGS="${RSPEC_TAGS} ~sudo"
 fi
 
-for arg in "$@" ; do
-  RSPEC_TAGS="${RSPEC_TAGS} --tag ${arg}"
+for tag in ${RSPEC_TAGS} ; do
+  RSPEC_OPTS="${RSPEC_OPTS} --tag ${tag}"
 done
 
-exec bundle exec rspec ${RSPEC_TAGS} ./spec
+export RSPEC_OPTS
+
+set -o xtrace
+exec bundle exec rake
