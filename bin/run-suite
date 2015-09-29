@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
+set -o errexit
+
 export DISPLAY=:99.0
+
 sh -e /etc/init.d/xvfb start
 
 : ${RSPEC_TAGS:=}
@@ -12,4 +15,5 @@ for arg in "$@" ; do
   RSPEC_TAGS="${RSPEC_TAGS} --tag ${arg}"
 done
 
+set -o xtrace
 exec bundle exec rspec ${RSPEC_TAGS} ./spec
