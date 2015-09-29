@@ -57,15 +57,15 @@ class SuiteEnqueuer
 
   def configure
     @token = env.fetch('TRAVIS_TOKEN')
-    @tags = %W(#{env.fetch('RSPEC_TAGS')}).map { |t| t.split(',') }.flatten.compact
-    @languages = (%W(#{env['LANGUAGE_SUITES']}) + argv).compact
+    @tags = env_array('RSPEC_TAGS')
+    @languages = (env_array('LANGUAGE_SUITES') + argv).compact
     @travis_api = env['TRAVIS_API_ENDPOINT'] || 'https://api.travis-ci.org'
     @owner = env['OWNER'] || 'travis-ci'
     @spec_branch = env['SPEC_BRANCH'] || 'specs'
     @repo = env['REPO'] || 'travis-images-specs'
     @now = Time.now.utc
     @whom = requested_by || env['USER'] || Etc.getpwuid(Process.euid).name
-    @skip_infra = %W(#{env['SKIP_INFRA']}).map { |t| t.split(',') }.flatten.compact
+    @skip_infra = env_array('SKIP_INFRA')
   end
 
   def conn
@@ -73,6 +73,10 @@ class SuiteEnqueuer
       faraday.response :logger if env['DEBUG']
       faraday.adapter :excon
     end
+  end
+
+  def env_array(key)
+    %W(#{env[key]}).map { |t| t.split(',') }.flatten.compact
   end
 
   def build_configs(lang)
