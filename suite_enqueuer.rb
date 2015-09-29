@@ -83,29 +83,17 @@ class SuiteEnqueuer
     [].tap do |c|
       c << {
         sudo: false,
-        env: {
-          global: [
-            'RSPEC_TAGS=standard'
-          ]
-        }
+        env: 'RSPEC_TAGS=standard'
       } unless skip_infra.include?('docker')
       c << {
         sudo: 'required',
-        env: {
-          global: [
-            'RSPEC_TAGS=standard'
-          ]
-        }
+        env: 'RSPEC_TAGS=standard'
       } unless skip_infra.include?('linux')
       c << {
         sudo: 'required',
         services: 'docker',
         group: 'edge',
-        env: {
-          global: [
-            'RSPEC_TAGS=' + (lang == 'generic' ? 'minimal' : 'mega')
-          ]
-        }
+        env: 'RSPEC_TAGS=' + (lang == 'generic' ? 'minimal' : 'mega')
       } unless skip_infra.include?('gce')
     end
   end
