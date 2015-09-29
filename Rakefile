@@ -25,8 +25,9 @@ end
 namespace :spec do
   targets = []
 
-  Dir.glob('./spec/*').each do |dir|
+  Dir.glob('./spec/*') do |dir|
     next unless File.directory?(dir)
+    next if %w(bin files).include?(File.basename(dir))
     targets << File.basename(dir)
   end
 

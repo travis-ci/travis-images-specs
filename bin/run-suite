@@ -18,4 +18,5 @@ done
 
 export RSPEC_OPTS
 
+set -o xtrace
 exec bundle exec rake
