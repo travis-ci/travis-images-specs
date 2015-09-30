@@ -1,12 +1,6 @@
 describe 'ccache installation', mega: true, standard: true, minimal: true do
-  describe 'ccache version' do
-    before :all do
-      system('ccache -V')
-    end
-
-    describe command('ccache -V') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('ccache -V') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'ccache commands are executed' do

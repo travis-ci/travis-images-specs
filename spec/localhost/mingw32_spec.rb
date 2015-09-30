@@ -1,11 +1,9 @@
 describe 'mingw', mega: true, standard: true, minimal: true do
-  describe 'gcc version' do
-    before :all do
-      system('gcc -v 2>&1 | tail -1')
-    end
+  describe command('gcc -v') do
+    its(:stdout) { should include('gcc ') }
   end
 
   describe command ('gcc') do
-    its(:stdout) { should include('gcc:', 'no input files') }
+    its(:stderr) { should include('gcc:', 'no input files') }
   end
 end

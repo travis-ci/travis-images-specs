@@ -1,12 +1,7 @@
 describe 'openssl installation', mega: true, standard: true, minimal: true do
-  describe 'openssl version' do
-    before :all do
-      system('openssl version')
-    end
-
-    describe command('openssl version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('openssl version') do
+    its(:stdout) { should match(/^OpenSSL/) }
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'openssl commands' do

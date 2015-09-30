@@ -1,16 +1,11 @@
 describe 'scons installation', mega: true, standard: true do
-  describe 'scons version' do
-    before :all do
-      system('scons -v | grep --color=never script')
-    end
-
-    describe command('scons -v') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('scons -v') do
+    its(:stdout) { should match(/v\d/) }
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'scons commands' do
-    describe command('scons -C ./spec/files; sleep 5') do
+    describe command('scons -C ./spec/files') do
       its(:stdout) do
         should include('scons: Reading SConscript files',
                        'scons: Building targets',
@@ -20,7 +15,7 @@ describe 'scons installation', mega: true, standard: true do
       end
     end
 
-    describe command('cd ./spec/files; scons --tree=all; sleep 5') do
+    describe command('cd ./spec/files; scons --tree=all') do
       its(:stdout) do
         should include('+-SConstruct',
                        '+-helloworld',

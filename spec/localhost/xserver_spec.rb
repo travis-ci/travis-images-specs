@@ -1,12 +1,6 @@
 describe 'xserver installation', mega: true, standard: true, minimal: true do
-  describe 'xserver version' do
-    before :all do
-      system('Xorg -version 2>&1 | grep --color=never X.Org')
-    end
-
-    describe command('Xorg -version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('Xorg -version') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'xserver starts' do

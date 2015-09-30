@@ -1,12 +1,6 @@
 describe 'maven installation', mega: true, standard: true do
-  describe 'maven version' do
-    before :all do
-      system('mvn -version | head -1')
-    end
-
-    describe command('mvn -version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('mvn -version') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'maven commands' do

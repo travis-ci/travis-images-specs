@@ -1,12 +1,6 @@
 describe 'subversion installation', mega: true, standard: true, minimal: true do
-  describe 'subversion version' do
-    before :all do
-      system('svn --version | head -1')
-    end
-
-    describe command('svn --version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('svn --version') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'subversion commands are executed' do

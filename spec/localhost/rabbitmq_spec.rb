@@ -3,12 +3,6 @@ describe 'rabbitmq installation', mega: true, standard: true do
     it { should be_installed }
   end
 
-  describe 'rabbitmq version', sudo: true do
-    before :all do
-      system('sudo service rabbitmq-server status | grep RabbitMQ | head -3 | tail -1')
-    end
-  end
-
   describe 'rabbitmq commands', sudo: true do
     before :all do
       system('sudo service rabbitmq-server start')
@@ -28,13 +22,19 @@ describe 'rabbitmq installation', mega: true, standard: true do
     end
   end
 
-  describe 'rabbitmqadmin commands' do
+  describe 'rabbitmqadmin commands', sudo: true do
     before :all do
-      system('./spec/bin/rabbitmqadmin declare queue name=my-test-queue durable=false')
-      system('./spec/bin/rabbitmqadmin publish exchange=amq.default routing_key=my-test-queue payload="hello, world" ')
+      system('sudo service rabbitmq-server start')
+      sleep 5
     end
 
-    describe command ('sleep 2; ./spec/bin/rabbitmqadmin list queues') do
+    before :each do
+      system('./spec/bin/rabbitmqadmin declare queue name=my-test-queue durable=false')
+      system('./spec/bin/rabbitmqadmin publish exchange=amq.default routing_key=my-test-queue payload="hello, world"')
+      sleep 2
+    end
+
+    describe command ('./spec/bin/rabbitmqadmin list queues') do
       its(:stdout) { should include('my-test-queue', '1') }
     end
 
@@ -42,7 +42,7 @@ describe 'rabbitmq installation', mega: true, standard: true do
       its(:stdout) { should include('my-test-queue', 'hello, world') }
     end
 
-    describe command ('sleep 2; ./spec/bin/rabbitmqadmin list queues') do
+    describe command ('./spec/bin/rabbitmqadmin list queues') do
       its(:stdout) { should include('my-test-queue', '0') }
     end
   end

@@ -1,21 +1,15 @@
 describe 'ant installation', mega: true, standard: true do
-  describe 'ant version' do
-    before :all do
-      system('ant -version')
-    end
-
-    describe command('ant -version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('ant -version') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'ant command' do
-    describe command('ant -diagnostics; sleep 5') do
+    describe command('ant -diagnostics') do
       its(:stdout) { should include('Ant diagnostics report') }
     end
 
-    describe command('ant &') do
-      its(:stdout) { should match 'Buildfile: build.xml does not exist!\nBuild failed' }
+    describe command('ant') do
+      its(:stdout) { should match 'Buildfile: build.xml does not exist!' }
     end
   end
 end

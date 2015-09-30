@@ -1,21 +1,15 @@
 describe 'java installation', mega: true, standard: true do
-  describe 'java version' do
-    before :all do
-      system('java -version | head -1')
-    end
-
-    describe command('java -version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('java -version') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'java command' do
     before do
-      system('javac ./spec/files/Hello.java')
+      system('cd ./spec/files && javac Hello.java')
     end
 
-    describe command('java Hello') do
-      its(:stdout) { should match 'Hello' }
+    describe command('cd ./spec/files && java Hello') do
+      its(:stdout) { should match 'Hello World!' }
     end
   end
 end

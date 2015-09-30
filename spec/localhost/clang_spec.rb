@@ -1,12 +1,6 @@
 describe 'clang installation', mega: true, standard: true, minimal: true do
-  describe 'clang version' do
-    before :all do
-      system('clang -v | head -1')
-    end
-
-    describe command('clang -v') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('clang -v') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'clang command' do

@@ -3,14 +3,8 @@ describe 'memcached installation', mega: true, standard: true do
     it { should be_installed }
   end
 
-  describe 'memcached version' do
-    before :all do
-      system('memcached -h | head -1')
-    end
-
-    describe command('memcached -h | head -1') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('memcached') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'memcached commands', sudo: true do
