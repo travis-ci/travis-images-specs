@@ -17,6 +17,7 @@ for tag in ${RSPEC_TAGS} ; do
 done
 
 export RSPEC_OPTS
+export DEBIAN_FRONTEND='noninteractive'
 
 set -o xtrace
 exec bundle exec rake

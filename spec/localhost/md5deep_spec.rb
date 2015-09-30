@@ -1,12 +1,6 @@
 describe 'md5deep installation', mega: true, standard: true, minimal: true do
-  describe 'md5deep version' do
-    before :all do
-      system('md5deep -v')
-    end
-
-    describe command('md5deep -v') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('md5deep -v') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'md5deep commands' do

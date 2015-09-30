@@ -3,14 +3,8 @@ describe 'couchdb installation', standard: true do
     it { should be_installed }
   end
 
-  describe 'couchdb version' do
-    before :all do
-      system('couchdb -V | head -1')
-    end
-
-    describe command('couchdb -V') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('couchdb -V') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'couchdb commands', sudo: true do

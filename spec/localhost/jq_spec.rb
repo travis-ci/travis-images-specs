@@ -1,12 +1,6 @@
 describe 'jq installation', mega: true, standard: true, minimal: true do
-  describe 'jq version' do
-    before :all do
-      system('jq -V')
-    end
-
-    describe command('jq -V') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('jq -V') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'jq command' do

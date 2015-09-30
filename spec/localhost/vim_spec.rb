@@ -1,12 +1,6 @@
 describe 'vim installation', mega: true, standard: true, minimal: true do
-  describe 'vim version' do
-    before :all do
-      system('vim --version | head -1')
-    end
-
-    describe command('vim --version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('vim --version') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'vim commands' do

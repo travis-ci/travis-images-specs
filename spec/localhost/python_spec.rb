@@ -1,27 +1,21 @@
 describe 'python and pip installation', mega: true, standard: true, minimal: true do
-  describe 'python version' do
-    before :all do
-      system('python --version')
-    end
-
-    describe command('python --version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('python --version') do
+    its(:stderr) { should match(/^Python /) }
+    its(:exit_status) { should eq 0 }
   end
 
-  describe 'pip version' do
-    before :all do
-      system('pip --version')
-    end
-
-    describe command('pip --version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('pip --version') do
+    its(:stdout) { should match(/^pip /) }
+    its(:exit_status) { should eq 0 }
   end
 
-  describe 'python command is executed' do
+  describe 'python commands' do
     describe command('python -c "print 123 + 123"') do
-      its(:stdout) { should match '246' }
+      its(:stdout) { should match(/^246$/) }
+    end
+
+    describe command('python -m this') do
+      its(:stdout) { should match(/it may be a good idea\.$/) }
     end
   end
 end

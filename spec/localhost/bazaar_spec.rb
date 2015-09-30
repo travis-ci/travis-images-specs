@@ -1,12 +1,6 @@
 describe 'bazaar installation', mega: true, standard: true do
-  describe 'bazaar version' do
-    before :all do
-      system('bzr version | head -1')
-    end
-
-    describe command('bzr version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('bzr version') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'bazaar commands are executed' do

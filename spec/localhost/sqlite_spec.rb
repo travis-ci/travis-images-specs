@@ -1,12 +1,7 @@
 describe 'sqlite installation', mega: true, standard: true, minimal: true do
-  describe 'sqlite version' do
-    before :all do
-      system('sqlite3 -version')
-    end
-
-    describe command('sqlite3 -version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('sqlite3 -version') do
+    its(:stdout) { should match(/\d\.\d/) }
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'sqlite commands are executed' do

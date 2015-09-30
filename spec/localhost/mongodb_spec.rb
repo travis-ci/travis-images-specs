@@ -1,12 +1,7 @@
 describe 'mongodb installation', standard: true do
-  describe 'mongodb version' do
-    before :all do
-      system('mongo --version')
-    end
-
-    describe command ('mongo --version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command ('mongo --version') do
+    its(:exit_status) { should eq 0 }
+    its(:stdout) { should match(/MongoDB shell/) }
   end
 
   describe 'mongo commands', sudo: true do

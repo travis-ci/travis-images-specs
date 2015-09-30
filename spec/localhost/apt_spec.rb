@@ -1,8 +1,6 @@
 describe 'apt installation', mega: true, standard: true, minimal: true do
-  describe 'apt version' do
-    before :all do
-      system('apt-get -v | head -1')
-    end
+  describe command('apt-get -v') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'apt commands', sudo: true do

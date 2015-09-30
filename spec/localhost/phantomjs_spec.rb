@@ -1,12 +1,7 @@
 describe 'phantomjs installation', mega: true, stardard: true do
-  describe 'phantomjs version' do
-    before :all do
-      system('phantomjs -v')
-    end
-
-    describe command('phantomjs -v') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('phantomjs -v') do
+    its(:stdout) { should match(/\d/) }
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'phantomjs commands' do

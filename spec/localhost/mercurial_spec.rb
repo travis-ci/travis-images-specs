@@ -1,12 +1,6 @@
 describe 'mercurial installation', mega: true, standard: true, minimal: true do
-  describe 'mercurial version' do
-    before :all do
-      system('hg version | head -1')
-    end
-
-    describe command('hg version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('hg version') do
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'mecurial commands are executed' do

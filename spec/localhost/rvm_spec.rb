@@ -1,12 +1,7 @@
 describe 'rvm installation', mega: true, standard: true, minimal: true do
-  describe 'rvm version' do
-    before :all do
-      system('rvm version')
-    end
-
-    describe command('rvm version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('rvm version') do
+    its(:stdout) { should match(/^rvm /) }
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'rvm commands' do

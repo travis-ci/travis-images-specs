@@ -1,43 +1,19 @@
 describe 'unarchivers installation', mega: true, standard: true, minimal: true do
   describe 'unarchivers versions' do
-    describe 'gzip version' do
-      before :all do
-        system('gzip --version 2>&1 | head -1')
-      end
-
-      describe command('gzip --version') do
-        its(:exit_status) { should eq 0 }
-      end
+    describe command('gzip --version') do
+      its(:exit_status) { should eq 0 }
     end
 
-    describe 'bzip2 version' do
-      before :all do
-        system('bzip2 --version 2>&1 | head -1')
-      end
-
-      describe command('bzip2 --version') do
-        its(:exit_status) { should eq 0 }
-      end
+    describe command('bzip2 --version') do
+      its(:exit_status) { should eq 0 }
     end
 
-    describe 'zip version' do
-      before :all do
-        system('zip --version | head -2 | tail -1')
-      end
-
-      describe command('zip --version') do
-        its(:exit_status) { should eq 0 }
-      end
+    describe command('zip --version') do
+      its(:exit_status) { should eq 0 }
     end
 
-    describe 'unzip version' do
-      before :all do
-        system('unzip -v | head -1')
-      end
-
-      describe command('unzip -version') do
-        its(:exit_status) { should eq 0 }
-      end
+    describe command('unzip -version') do
+      its(:exit_status) { should eq 0 }
     end
   end
 

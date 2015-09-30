@@ -3,14 +3,9 @@ describe 'riak installation', standard: true do
     it { should be_installed }
   end
 
-  describe 'riak version' do
-    before :all do
-      system('riak version')
-    end
-
-    describe command('riak version') do
-      its(:exit_status) { should eq 0 }
-    end
+  describe command('riak version') do
+    its(:stdout) { should match(/^\d/) }
+    its(:exit_status) { should eq 0 }
   end
 
   describe 'riak commands', sudo: true do
