@@ -1,6 +1,6 @@
 describe 'mingw', mega: true, standard: true, minimal: true do
   describe command('gcc -v') do
-    its(:stdout) { should include('gcc ') }
+    its(:stderr) { should match(/^gcc version/) }
   end
 
   describe command ('gcc') do

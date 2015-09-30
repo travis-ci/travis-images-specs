@@ -2,8 +2,21 @@ language: ruby
 
 sudo: false
 
+# XXX: DISABLE THESE BEFORE MERGE
+sudo: required
+services: docker
+group: edge
+env:
+  global:
+  - RSPEC_TAGS=mega
+# XXX
+
 rvm: 2.2.3
 
 cache: bundler
 
-script: bundle exec rake rubocop
+script:
+- bundle exec rake rubocop
+# XXX: DISABLE THIS BEFORE MERGE
+- bin/run-suite
+# XXX

@@ -3,8 +3,9 @@ describe 'memcached installation', mega: true, standard: true do
     it { should be_installed }
   end
 
-  describe command('memcached') do
+  describe command('memcached -h') do
     its(:exit_status) { should eq 0 }
+    its(:stdout) { should match(/^memcached \d/) }
   end
 
   describe 'memcached commands', sudo: true do
