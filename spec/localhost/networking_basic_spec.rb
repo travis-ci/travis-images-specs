@@ -45,7 +45,7 @@ describe 'networking_basic installation', mega: true, standard: true do
         'python', '-m', 'SimpleHTTPServer', '19494',
         [:out, :err] => '/dev/null'
       )
-      tcpwait('127.0.0.1', 19494)
+      tcpwait('127.0.0.1', 19_494)
       example.run
       Process.kill(:TERM, pid)
     end
