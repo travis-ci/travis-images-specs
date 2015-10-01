@@ -25,7 +25,6 @@ describe 'networking_basic installation', mega: true, standard: true do
   end
 
   describe command('nc -h') do
-    its(:stderr) { should match(/OpenBSD netcat/) }
     its(:exit_status) { should eq 0 }
   end
 
