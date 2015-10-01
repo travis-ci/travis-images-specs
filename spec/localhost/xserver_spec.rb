@@ -1,4 +1,4 @@
-describe 'xserver installation', mega: true, standard: true, minimal: true do
+describe 'xserver installation', mega: :todo, standard: true, minimal: true do
   describe command('Xorg -version') do
     its(:exit_status) { should eq 0 }
   end

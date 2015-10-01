@@ -22,7 +22,8 @@ describe 'rabbitmq installation', mega: true, standard: true do
 
     describe command('sudo rabbitmqctl status') do
       its :stdout do
-        should include('Status of node rabbit@', 'running_applications')
+        should match(/Status of node '?rabbit@/)
+        should include('running_applications')
       end
     end
   end
