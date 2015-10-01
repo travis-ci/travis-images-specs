@@ -8,7 +8,7 @@ describe 'mercurial installation', mega: true, standard: true, minimal: true do
     before :all do
       system(
         %w(
-          rm -rf hg-test-project
+          rm -rf hg-test-project ;
           hg init hg-test-project ;
           touch hg-test-project/test-file.txt
         ).join(' ')
@@ -17,7 +17,7 @@ describe 'mercurial installation', mega: true, standard: true, minimal: true do
 
     describe command(
       %w(
-        cd test-project ;
+        cd hg-test-project ;
         hg status ;
         hg add . ;
         hg status
