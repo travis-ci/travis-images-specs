@@ -29,7 +29,7 @@ describe 'networking_basic installation', mega: true, standard: true do
     its(:exit_status) { should eq 0 }
   end
 
-  describe command('nc -zv localhost 22') do
+  describe command('nc -zv 127.0.0.1 22') do
     its(:stderr) { should include 'succeeded' }
   end
 

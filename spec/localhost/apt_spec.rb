@@ -8,12 +8,7 @@ describe 'apt installation', mega: true, standard: true, minimal: true do
       its(:stdout) { should match(/Reading package lists/) }
     end
 
-    describe command(
-      %w(
-        sudo apt-get -y install language-pack-ar-base ;
-        sleep 10
-      ).join(' ')
-    ) do
+    describe command('sudo apt-get install -y language-pack-pt') do
       its(:stdout) { should match(/Setting up /) }
     end
   end

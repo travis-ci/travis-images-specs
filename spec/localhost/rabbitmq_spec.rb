@@ -9,7 +9,7 @@ describe 'rabbitmq installation', mega: true, standard: true do
         'sudo service rabbitmq-server start',
         [:out, :err] => '/dev/null'
       )
-      tcpwait('localhost', 5672)
+      tcpwait('127.0.0.1', 5672)
     end
 
     describe service('rabbitmq') do
