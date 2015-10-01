@@ -10,7 +10,7 @@ describe 'mongodb installation', standard: true do
       system('sleep 10')
     end
 
-    describe command('cat /var/log/mongodb/mongodb.log')  do
+    describe command('cat /var/log/mongodb/mongodb.log') do
       its(:stdout) { should match '[initandlisten] waiting for connections on port' }
     end
 
