@@ -5,7 +5,7 @@ describe 'phantomjs installation', mega: true, stardard: true do
   end
 
   describe 'phantomjs commands' do
-    describe command ('phantomjs ./spec/files/phantomjs_test_google.js') do
+    describe command('phantomjs ./spec/files/phantomjs_test_google.js') do
       its(:stdout) { should match 'Status: success' }
     end
   end

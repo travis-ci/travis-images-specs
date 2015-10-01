@@ -18,7 +18,7 @@ describe 'memcached installation', mega: true, standard: true do
       it { should be_running }
     end
 
-    describe command ('echo \'stats\' | nc 127.0.0.1 11211') do
+    describe command('echo \'stats\' | nc 127.0.0.1 11211') do
       its(:stdout) { should match 'version' }
     end
   end

@@ -41,7 +41,7 @@ describe 'unarchivers installation', mega: true, standard: true, minimal: true d
     describe command(
       %w(
         bzip2 -z ./spec/files/unarchivers.txt ;
-        ls ./spec/files/
+        ls ./spec/files/ ;
         bzip2 -d ./spec/files/unarchivers.txt.bz2 ;
         cat ./spec/files/unarchivers.txt
       ).join(' ')

@@ -22,16 +22,17 @@ describe 'rabbitmq installation', mega: true, standard: true do
 
     describe command('sudo rabbitmqctl status') do
       its :stdout do
-        should include(
-          'Status of node rabbit@localhost', 'running_applications'
-        )
+        should include('Status of node rabbit@', 'running_applications')
       end
     end
   end
 
   describe 'rabbitmqadmin commands', sudo: true do
     before :all do
-      system('sudo service rabbitmq-server start')
+      system(
+        'sudo service rabbitmq-server start',
+        [:out, :err] => '/dev/null'
+      )
       sleep 5
     end
 

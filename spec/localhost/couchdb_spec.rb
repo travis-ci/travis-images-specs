@@ -15,15 +15,15 @@ describe 'couchdb installation', standard: true do
       system('curl -X PUT http://127.0.0.1:5984/baseball/bat -H \'Content-Type: application/json\' -d \'{"Name":"Testname"}\'')
     end
 
-    describe command ('curl http://127.0.0.1:5984/') do
+    describe command('curl http://127.0.0.1:5984/') do
       its(:stdout) { should match '"couchdb":"Welcome"' }
     end
 
-    describe command ('curl -X GET http://127.0.0.1:5984/_all_dbs') do
+    describe command('curl -X GET http://127.0.0.1:5984/_all_dbs') do
       its(:stdout) { should match 'baseball' }
     end
 
-    describe command ('curl -X GET http://127.0.0.1:5984/baseball/bat') do
+    describe command('curl -X GET http://127.0.0.1:5984/baseball/bat') do
       its(:stdout) { should include('_id', 'bat', 'Name', 'Testname') }
     end
   end

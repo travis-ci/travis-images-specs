@@ -14,11 +14,11 @@ describe 'elasticsearch installation', standard: true do
       system('sleep 8')
     end
 
-    describe command ('curl -XGET \'http://localhost:9200/twitter/tweet/1?pretty=true\'') do
+    describe command('curl -XGET \'http://localhost:9200/twitter/tweet/1?pretty=true\'') do
       its(:stdout) { should include('Trying out Elasticsearch') }
     end
 
-    describe command ('curl -XGET \'http://localhost:9200/twitter/tweet/_search?q=message:Trying&pretty=true\'') do
+    describe command('curl -XGET \'http://localhost:9200/twitter/tweet/_search?q=message:Trying&pretty=true\'') do
       its(:stdout) { should include('"total" : 1', '"user": "kimchy"', '"message": "Trying out Elasticsearch"') }
     end
   end

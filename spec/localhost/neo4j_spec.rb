@@ -13,7 +13,7 @@ describe 'neo4j installation', standard: true do
       it { should be_running }
     end
 
-    describe command ('neo4j-shell -c "set -t int height 178"; neo4j-shell -c "ls"') do
+    describe command('neo4j-shell -c "set -t int height 178"; neo4j-shell -c "ls"') do
       its(:stdout) { should include('height =', '178') }
     end
   end
