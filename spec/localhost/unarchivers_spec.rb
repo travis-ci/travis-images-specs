@@ -1,18 +1,22 @@
 describe 'unarchivers installation', mega: true, standard: true, minimal: true do
   describe 'unarchivers versions' do
     describe command('gzip --version') do
+      its(:stdout) { should match(/^gzip \d/) }
       its(:exit_status) { should eq 0 }
     end
 
     describe command('bzip2 --version') do
+      its(:stderr) { should match(/^bzip.*Version \d/) }
       its(:exit_status) { should eq 0 }
     end
 
     describe command('zip --version') do
+      its(:stdout) { should match(/Zip \d/) }
       its(:exit_status) { should eq 0 }
     end
 
     describe command('unzip -version') do
+      its(:stdout) { should match(/^UnZip \d/) }
       its(:exit_status) { should eq 0 }
     end
   end
@@ -22,27 +26,39 @@ describe 'unarchivers installation', mega: true, standard: true, minimal: true d
       its(:stdout) { should match 'Status: install ok installed' }
     end
 
-    describe command('gzip ./spec/files/unarchivers.txt; ls ./spec/files/') do
+    describe command(
+      %w(
+        gzip ./spec/files/unarchivers.txt ;
+        ls ./spec/files/ ;
+        gzip -d ./spec/files/unarchivers.txt.gz ;
+        cat ./spec/files/unarchivers.txt
+      ).join(' ')
+    ) do
       its(:stdout) { should include('unarchivers.txt.gz') }
-    end
-
-    describe command('gzip -d ./spec/files/unarchivers.txt.gz; cat ./spec/files/unarchivers.txt') do
       its(:stdout) { should match 'Konstantin broke all the things.' }
     end
 
-    describe command('bzip2 -z ./spec/files/unarchivers.txt; ls ./spec/files/') do
+    describe command(
+      %w(
+        bzip2 -z ./spec/files/unarchivers.txt ;
+        ls ./spec/files/ ;
+        bzip2 -d ./spec/files/unarchivers.txt.bz2 ;
+        cat ./spec/files/unarchivers.txt
+      ).join(' ')
+    ) do
       its(:stdout) { should include('unarchivers.txt.bz2') }
-    end
-
-    describe command('bzip2 -d ./spec/files/unarchivers.txt.bz2; cat ./spec/files/unarchivers.txt') do
       its(:stdout) { should match 'Konstantin broke all the things.' }
     end
 
-    describe command('zip ./spec/files/unarchivers.txt.zip ./spec/files/unarchivers.txt; ls ./spec/files') do
+    describe command(
+      %w(
+        zip ./spec/files/unarchivers.txt.zip ./spec/files/unarchivers.txt ;
+        ls ./spec/files ;
+        unzip ./spec/files/unarchivers2.txt.zip ;
+        cat unarchivers2.txt
+      ).join(' ')
+    ) do
       its(:stdout) { should include('unarchivers.txt.zip') }
-    end
-
-    describe command('unzip ./spec/files/unarchivers2.txt.zip; sleep 2; cat unarchivers2.txt') do
       its(:stdout) { should match 'Konstantin broke all the things' }
     end
   end

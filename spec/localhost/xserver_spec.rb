@@ -1,14 +1,10 @@
-describe 'xserver installation', mega: true, standard: true, minimal: true do
+describe 'xserver installation', mega: :todo, standard: true, minimal: true do
   describe command('Xorg -version') do
     its(:exit_status) { should eq 0 }
   end
 
-  describe 'xserver starts' do
-    describe 'virtual server' do
-      describe command('DISPLAY=:99.0 xset -q') do
-        # xset -q tests if X server is reachable
-        its(:exit_status) { should eq 0 }
-      end
-    end
+  describe command('DISPLAY=:99.0 xset -q') do
+    its(:stdout) { should match(/^Keyboard Control:/) }
+    its(:exit_status) { should eq 0 }
   end
 end

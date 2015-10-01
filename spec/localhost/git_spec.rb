@@ -4,24 +4,33 @@ describe 'git installation', mega: true, standard: true, minimal: true do
   end
 
   describe command('git --version') do
+    its(:stdout) { should match(/^git version \d/) }
     its(:exit_status) { should eq 0 }
   end
 
-  describe 'git commands are executed' do
-    before :all do
-      system('git init git-project; sleep 3; cd git-project; sleep 3; touch test-file.txt')
+  describe 'git commands' do
+    before :each do
+      system(%w(
+        rm -rf git-project ;
+        git init git-project ;
+        touch git-project/test-file.txt
+      ).join(' '), [:out, :err] => '/dev/null')
     end
 
-    describe command('cd git-project; git status') do
+    describe command(
+      %w(
+        cd git-project ;
+        git status ;
+        git add test-file.txt ;
+        git status ;
+        git add test-file.txt ;
+        git rm -f test-file.txt ;
+        git status
+      ).join(' ')
+    ) do
       its(:stdout) { should include('Untracked files:', 'test-file.txt') }
-    end
-
-    describe command('cd git-project; git add test-file.txt; git status') do
       its(:stdout) { should include('Changes to be committed:', 'new file:   test-file.txt') }
-    end
-
-    describe command('cd git-project; git add test-file.txt; git rm -f test-file.txt; git status') do
-      its(:stdout) { should match 'nothing to commit' }
+      its(:stdout) { should match(/nothing to commit/) }
     end
   end
 end
