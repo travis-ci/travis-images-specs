@@ -5,13 +5,20 @@ describe 'postgres installation', mega: true, standard: true, minimal: true do
   end
 
   describe 'psql commands' do
-    before { command('dropdb test_db || true ; createdb test_db') }
+    before do
+      system('dropdb test_db || true ; createdb test_db')
+    end
 
     describe command('psql -ltA') do
       its(:stdout) { should match(/^test_db\|/) }
     end
 
-    describe command('psql -c "CREATE TABLE test_table();" test_db; psql -tAc "\\dt" test_db') do
+    describe command(
+      %w(
+        psql -c "CREATE TABLE test_table();" test_db ;
+        psql -tAc "\dt" test_db
+      ).join(' ')
+    ) do
       its(:stdout) { should match(/^public\|test_table\|/) }
     end
   end

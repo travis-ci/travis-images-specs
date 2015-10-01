@@ -7,22 +7,33 @@ describe 'scons installation', mega: true, standard: true do
   describe 'scons commands' do
     describe command('scons -C ./spec/files') do
       its(:stdout) do
-        should include('scons: Reading SConscript files',
-                       'scons: Building targets',
-                       'gcc -o helloworld.o -c helloworld.c',
-                       'gcc -o helloworld helloworld.o',
-                       'scons: done building targets.')
+        should include(
+					'scons: Reading SConscript files ...',
+					'scons: done reading SConscript files.',
+					'scons: Building targets ...',
+					'gcc -o helloworld.o -c helloworld.c',
+					'gcc -o helloworld helloworld.o',
+					'scons: done building targets.'
+			  )
       end
     end
 
     describe command('cd ./spec/files; scons --tree=all') do
       its(:stdout) do
-        should include('+-SConstruct',
-                       '+-helloworld',
-                       '+-helloworld.o',
-                       '+-helloworld.c',
-                       '+-/usr/bin/gcc',
-                       'scons: done building targets.')
+        should include(
+					'+-.',
+					'  +-SConstruct',
+					'  +-helloworld',
+					'  | +-helloworld.o',
+					'  | | +-helloworld.c',
+					'  | | +-/usr/bin/gcc',
+					'  | +-/usr/bin/gcc',
+					'  +-helloworld.c',
+					'  +-helloworld.o',
+					'    +-helloworld.c',
+					'    +-/usr/bin/gcc',
+					'scons: done building targets.'
+				)
       end
     end
   end

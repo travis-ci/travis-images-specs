@@ -1,4 +1,4 @@
-describe 'elasticsearch installation', mega: true, standard: true do
+describe 'elasticsearch installation', standard: true do
   describe package('elasticsearch') do
     it { should be_installed }
   end

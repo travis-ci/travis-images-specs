@@ -6,11 +6,12 @@ describe 'redis installation', mega: true, standard: true do
 
   describe 'redis commands' do
     before :all do
-      system('redis-server &>/dev/null &')
+      system('redis-server &', [:out, :err] => '/dev/null')
+      tcpwait('localhost', 6379)
     end
 
     before :each do
-      system('redis-cli SET test_key test_value')
+      system('redis-cli SET test_key test_value', [:out, :err] => '/dev/null')
     end
 
     describe command ('redis-cli PING') do

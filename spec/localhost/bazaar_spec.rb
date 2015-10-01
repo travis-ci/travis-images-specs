@@ -1,22 +1,24 @@
 describe 'bazaar installation', mega: true, standard: true do
   describe command('bzr version') do
+    its(:stdout) { should match(/Bazaar \(bzr\)/) }
     its(:exit_status) { should eq 0 }
   end
 
-  describe 'bazaar commands are executed' do
-    before :all do
-      system('bzr init bzr-project; cd bzr-project; touch test-file.rb')
+  describe 'bazaar commands' do
+    before :each do
+      system(
+        %w(rm -rf bzr-project ;
+           bzr init bzr-project ;
+           touch bzr-project/test-file.rb).join(' '),
+        [:out, :err] => '/dev/null'
+      )
     end
 
-    describe command('cd bzr-project; bzr status') do
+    describe command(
+      'cd bzr-project ; bzr status ; bzr add test-file.rb ; bzr status'
+    ) do
+      its(:stdout) { should match(/adding test-file.rb/) }
       its(:stdout) { should include('unknown:', 'test-file.rb') }
-    end
-
-    describe command('cd bzr-project; bzr add test-file.rb') do
-      its(:stdout) { should match 'adding test-file.rb' }
-    end
-
-    describe command('cd bzr-project; bzr status') do
       its(:stdout) { should include('added:', 'test-file.rb') }
     end
   end
