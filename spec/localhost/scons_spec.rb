@@ -5,6 +5,13 @@ describe 'scons installation', mega: true, standard: true do
   end
 
   describe 'scons commands' do
+    before :each do
+      system(
+        'rm -f ./spec/files/helloworld.o ./spec/files/helloworld',
+        [:out, :err] => '/dev/null'
+      )
+    end
+
     describe command('scons -C ./spec/files') do
       its(:stdout) do
         should include(
