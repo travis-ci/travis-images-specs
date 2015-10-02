@@ -4,15 +4,7 @@ rvm: 2.2.3
 
 gemfile: Gemfile.ci
 
-# XXX TEMPORARY
-sudo: required
-services: docker
-group: edge
-env:
-  global:
-  - RSPEC_TAGS=mega
-# sudo: false
-# XXX TEMPORARY
+sudo: false
 
 script:
 - bundle exec rake rubocop
