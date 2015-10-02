@@ -6,8 +6,8 @@ describe 'rvm installation', mega: true, standard: true, minimal: true do
 
   describe file('/usr/local/rvm/user/db'), standard: :todo do
     it { should exist }
-    it { should be_writable.by_user('travis') }
-    it { should be_readable.by_user('travis') }
+    it { should be_writable }
+    it { should be_readable }
   end
 
   describe 'rvm commands' do
