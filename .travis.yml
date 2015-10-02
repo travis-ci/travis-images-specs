@@ -1,6 +1,13 @@
 language: ruby
 
-sudo: false
+# XXX TEMPORARY
+sudo: required
+services: docker
+env:
+  global:
+  - RSPEC_TAGS=mega
+# sudo: false
+# XXX TEMPORARY
 
 rvm: 2.2.3
 
