@@ -2,6 +2,8 @@ language: ruby
 
 rvm: 2.2.3
 
+gemfile: Gemfile.ci
+
 # XXX TEMPORARY
 sudo: required
 services: docker
