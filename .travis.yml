@@ -8,3 +8,4 @@ cache: bundler
 
 script:
 - bundle exec rake rubocop
+- git log -1 | if grep -q '^[run-suite]' ; then bin/run-suite ; fi
