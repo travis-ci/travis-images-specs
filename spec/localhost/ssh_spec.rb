@@ -1,0 +1,10 @@
+describe 'ssh access', mega: true, standard: true, minimal: true do
+  %w(known_hosts authorized_keys).each do |basename|
+    describe file("~/.ssh/#{basename}") do
+      it { should exist }
+      its(:size) { should be gt 0 }
+      it { should be_readable }
+      it { should be_writable }
+    end
+  end
+end
