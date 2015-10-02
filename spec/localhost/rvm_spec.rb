@@ -11,7 +11,7 @@ describe 'rvm installation', mega: true, standard: true, minimal: true do
   end
 end
 
-describe file('/usr/local/rvm/user/db'), mega: true, minimal: true do
+describe file('/usr/local/rvm/user/db'), sudo: true, mega: true, minimal: true do
   it { should exist }
   it { should be_writable }
   it { should be_readable }
