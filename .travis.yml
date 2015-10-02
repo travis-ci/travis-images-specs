@@ -7,6 +7,7 @@ gemfile: Gemfile.ci
 # XXX TEMPORARY
 sudo: required
 services: docker
+group: edge
 env:
   global:
   - RSPEC_TAGS=mega
