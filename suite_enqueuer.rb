@@ -28,7 +28,6 @@ class SuiteEnqueuer
 
       config = {
         language: lang,
-        env: "RSPEC_TAGS=#{tags.join(',')}",
         matrix: { include: build_configs(lang) },
         install: 'bundle install --jobs=3 --retry=3',
         script: 'bin/run-suite'
