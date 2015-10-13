@@ -9,7 +9,7 @@ describe 'apt installation', mega: true, standard: true, minimal: true do
 
   describe 'apt commands', sudo: true do
     describe command('sudo apt-get update -y') do
-      its(:stdout) { should match(/Reading package lists/) }
+      its(:stdout) { should match(/http/) }
     end
 
     describe command('sudo apt-get install -y language-pack-pt') do
