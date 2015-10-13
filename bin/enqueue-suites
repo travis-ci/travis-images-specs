@@ -3,5 +3,14 @@
 top = File.expand_path('../../', __FILE__)
 $LOAD_PATH.unshift(top) unless $LOAD_PATH.include?(top)
 
-require 'suite_enqueuer'
-exit(SuiteEnqueuer.run(argv: ARGV).empty? ? 1 : 0) if $PROGRAM_NAME == __FILE__
+if $PROGRAM_NAME == __FILE__
+  require 'suite_enqueuer'
+
+  results = SuiteEnqueuer.run(argv: ARGV)
+
+  results.each do |result|
+    puts result.last
+  end
+
+  exit(results.empty? ? 1 : 0)
+end
