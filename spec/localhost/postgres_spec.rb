@@ -1,4 +1,4 @@
-describe 'postgres installation', mega: true, standard: true, minimal: true do
+describe 'postgres installation', mega: true, standard: true do
   describe command('psql --version') do
     its(:stdout) { should match(/^psql /) }
     its(:exit_status) { should eq 0 }
