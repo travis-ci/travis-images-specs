@@ -1,4 +1,4 @@
-describe 'nodejs installation', mega: true, standard: true, minimal: true do
+describe 'nodejs installation', mega: true, standard: true do
   describe command('node -v') do
     its(:stdout) { should match(/v\d/) }
     its(:exit_status) { should eq 0 }
