@@ -4,9 +4,11 @@ describe 'ruby installation', mega: true, standard: true, minimal: true do
     its(:exit_status) { should eq 0 }
   end
 
-  describe 'ruby command is executed' do
-    describe command(%(ruby -e 'puts "Konstanin broke all the things!"')) do
-      its(:stdout) { should match(/^Konstanin broke all the things!$/) }
-    end
+  describe command(%(ruby -e 'puts RUBY_ENGINE')) do
+    its(:stdout) { should match(/^ruby/) }
+  end
+
+  describe command(%(ruby -e 'puts "Konstanin broke all the things!"')) do
+    its(:stdout) { should match(/^Konstanin broke all the things!$/) }
   end
 end
