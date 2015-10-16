@@ -34,8 +34,8 @@ class App < Sinatra::Base
     results = SuiteEnqueuer.new(
       argv: params['languages'],
       env: App.base_env.merge(
-        'OWNER' => params['owner'] || 'travis-ci',
-        'REPO' => params['repo'] || 'travis-images-specs',
+        'OWNER' => params['owner'] || 'travis-infrastructure',
+        'REPO' => params['repo'] || 'packer-templates',
         'SPEC_BRANCH' => params['spec_branch'] || 'specs',
         'SKIP_INFRA' => params['skip_infra'] || '',
         'RSPEC_TAGS' => params['tags'] || ''

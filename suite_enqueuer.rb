@@ -60,9 +60,9 @@ class SuiteEnqueuer
     @tags = env_array('RSPEC_TAGS')
     @languages = (env_array('LANGUAGE_SUITES') + argv).compact
     @travis_api = env['TRAVIS_API_ENDPOINT'] || 'https://api.travis-ci.org'
-    @owner = env['OWNER'] || 'travis-ci'
+    @owner = env['OWNER'] || 'travis-infrastructure'
     @spec_branch = env['SPEC_BRANCH'] || 'specs'
-    @repo = env['REPO'] || 'travis-images-specs'
+    @repo = env['REPO'] || 'packer-templates'
     @now = Time.now.utc
     @whom = requested_by || env['USER'] || Etc.getpwuid(Process.euid).name
     @skip_infra = env_array('SKIP_INFRA')

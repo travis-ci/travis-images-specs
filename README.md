@@ -1,19 +1,6 @@
-# travis-images-specs
+# `travis-images-specs`
 
-Specs for Travis build images!
-
-These tests check the standard build image to ensure that all components and
-packages are installed and (where possible) properly operational.
-
-They are designed to be used by whoever is responsible for rolling out build
-images.
-
-In order to test languages other than Ruby, and run tests where sudo privileges
-are not available, it is possible to use the `enqueue-suites` script included in
-the `./bin` directory.
-
-This script sends build requests for different build images using the Travis
-API's repo requests resource.
+Spec runner for Travis images!
 
 ## Configuration
 
@@ -23,11 +10,11 @@ to the Travis API.
 ## Usage
 
 There are both a web application and script available for enqueueing spec
-suites, available at `./app.rb` and `./bin/enqueue-suites` respectively.
+suites, available at `./app.rb` and `./enqueue-suites` respectively.
 
 Running the script by passing languages as options will send seperate build
 requests for ruby, python, and php., e.g.:
 
 ``` bash
-bundle exec ./bin/enqueue-suites ruby python php
+bundle exec ./enqueue-suites ruby python php
 ```
