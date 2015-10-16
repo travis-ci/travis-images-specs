@@ -1,6 +1,21 @@
 #!/usr/bin/env ruby
 
 class SuiteEnqueuer
+  SCRIPT = <<-EOF.split("\n").map(&:strip).reject(&:empty?)
+    sh -e /etc/init.d/xvfb start || echo "ignoring exit $? from xvfb"
+
+    : ${RSPEC_TAGS:=}
+    : ${RSPEC_OPTS:=}
+
+    if ! sudo -n true 2>/dev/null ; then RSPEC_TAGS="${RSPEC_TAGS} ~sudo" ; fi
+
+    for tag in ${RSPEC_TAGS} ; do RSPEC_OPTS="${RSPEC_OPTS} --tag ${tag}" ; done
+
+    export RSPEC_OPTS
+
+    bundle exec rake
+  EOF
+
   def self.run(argv: ARGV)
     new(argv: argv).run
   end
@@ -29,8 +44,9 @@ class SuiteEnqueuer
       config = {
         language: lang,
         matrix: { include: build_configs(lang) },
+        env: { global: %w(DISPLAY=:99.0 DEBIAN_FRONTEND=noninteractive) },
         install: 'bundle install --jobs=3 --retry=3',
-        script: 'bin/run-suite'
+        script: SCRIPT
       }
 
       puts "Enqueueing suite for config=#{config.inspect}"
@@ -60,9 +76,9 @@ class SuiteEnqueuer
     @tags = env_array('RSPEC_TAGS')
     @languages = (env_array('LANGUAGE_SUITES') + argv).compact
     @travis_api = env['TRAVIS_API_ENDPOINT'] || 'https://api.travis-ci.org'
-    @owner = env['OWNER'] || 'travis-ci'
+    @owner = env['OWNER'] || 'travis-infrastructure'
     @spec_branch = env['SPEC_BRANCH'] || 'specs'
-    @repo = env['REPO'] || 'travis-images-specs'
+    @repo = env['REPO'] || 'packer-templates'
     @now = Time.now.utc
     @whom = requested_by || env['USER'] || Etc.getpwuid(Process.euid).name
     @skip_infra = env_array('SKIP_INFRA')

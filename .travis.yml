@@ -2,10 +2,7 @@ language: ruby
 
 rvm: 2.2.3
 
-gemfile: Gemfile.ci
-
 sudo: false
 
 script:
-- bundle exec rake rubocop
-- git log -1 | if grep -qE '^\s+___RUN_THE_SUITE___' ; then bin/run-suite ; fi
+- bundle exec rubocop
