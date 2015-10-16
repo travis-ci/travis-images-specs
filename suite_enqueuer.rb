@@ -1,6 +1,21 @@
 #!/usr/bin/env ruby
 
 class SuiteEnqueuer
+  SCRIPT = <<-EOF.split("\n").map(&:strip).reject(&:empty?)
+    sh -e /etc/init.d/xvfb start || echo "ignoring exit $? from xvfb"
+
+    : ${RSPEC_TAGS:=}
+    : ${RSPEC_OPTS:=}
+
+    if ! sudo -n true 2>/dev/null ; then RSPEC_TAGS="${RSPEC_TAGS} ~sudo" ; fi
+
+    for tag in ${RSPEC_TAGS} ; do RSPEC_OPTS="${RSPEC_OPTS} --tag ${tag}" ; done
+
+    export RSPEC_OPTS
+
+    bundle exec rake
+  EOF
+
   def self.run(argv: ARGV)
     new(argv: argv).run
   end
@@ -29,8 +44,9 @@ class SuiteEnqueuer
       config = {
         language: lang,
         matrix: { include: build_configs(lang) },
+        env: { global: %w(DISPLAY=:99.0 DEBIAN_FRONTEND=noninteractive) },
         install: 'bundle install --jobs=3 --retry=3',
-        script: 'bin/run-suite'
+        script: SCRIPT
       }
 
       puts "Enqueueing suite for config=#{config.inspect}"
